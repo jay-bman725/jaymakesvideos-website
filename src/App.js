@@ -7,7 +7,8 @@ import Content from './components/Content';
 import YouTube from './components/YouTube';
 import Twitch from './components/Twitch';
 import HomeButton from './components/HomeButton';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
           <Route path="/discord" element={<Discord />} />
           <Route path="/youtube" element={<YouTube />} />
           <Route path="/twitch" element={<Twitch />} />
-          <SpeedInsights />
         </Routes>
         <HomeButton />
+        <SpeedInsights />
       </div>
     </Router>
   );
