@@ -13,7 +13,7 @@ function YouTube() {
           <h2>Jay Makes Videos</h2>
           <p className="channel-description">
             Welcome to my YouTube channel! Here you'll find exciting content about
-            gaming, tech, and entertainment. Subscribe to join our growing community!
+            tech and entertainment. Subscribe to join our growing community!
           </p>
           
           <div className="stats-grid">
@@ -23,7 +23,7 @@ function YouTube() {
             </div>
             <div className="stat-item">
               <h3>Content Type</h3>
-              <p>Gaming, Tech Reviews, Tutorials</p>
+              <p>Tech Reviews, Tutorials</p>
             </div>
           </div>
 
