@@ -99,7 +99,7 @@ body {
 
 /* Persistent Home Button */
 .home-button-overlay {
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
@@ -234,4 +234,31 @@ p {
   text-decoration: none;
   display: inline-block;
   margin-top: 2rem;
+}
+
+/* Add this with your other platform button styles */
+.platform-button.bluesky-btn {
+  background-color: #0085ff;
+}
+
+/* Optional: Add hover state */
+.platform-button.bluesky-btn:hover {
+  background-color: #0066cc;
+}
+
+.discord-rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rule-box {
+  background-color: rgba(255, 255, 255, 0.25); /* 75% transparent white */
+  border: 1px solid #ccc; /* Border for the rule box */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem; /* Padding inside the box */
+  margin: 1rem 0; /* Space between each rule */
+  width: 90%; /* Width of the rule box */
+  max-width: 600px; /* Maximum width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
 }
