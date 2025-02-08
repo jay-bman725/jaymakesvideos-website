@@ -1,8 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function YouTube() {
-  const navigate = useNavigate();
 
   return (
     <div className="page-container platform-page">
@@ -41,4 +39,4 @@ function YouTube() {
   );
 }
 
-export default YouTube; 
+export default YouTube;

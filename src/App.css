@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
-  background: linear-gradient(135deg, #90d5ff 0%, #305cde 100%);
+  background: linear-gradient(145deg, #1e1e36 0%, #1a2648 50%, #134272 100%);
   min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  color: #333;
+  color: #f5f5f5;
+  overflow-x: hidden;
 }
 
 .App {
@@ -15,44 +16,59 @@ body {
 
 .page-container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 2rem auto;
+  padding: 2.5rem;
   position: relative;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 7rem);
   display: flex;
   flex-direction: column;
+  border-radius: 24px;
+  animation: fadeIn 0.8s ease-out;
 }
 
-/* Updated Dropdown Styles */
+.page-container:not(.home-page) {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .content-menu {
   position: relative;
   display: inline-block;
-  margin: 2rem auto;
+  margin: 2.5rem auto;
 }
 
 .dropdown-button {
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #305cde;
-  border: 2px solid #305cde;
-  border-radius: 8px;
+  padding: 1.2rem 2.8rem;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
+  gap: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
+  backdrop-filter: blur(8px);
 }
 
 .dropdown-button.active {
-  background-color: #305cde;
-  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .dropdown-arrow {
-  font-size: 0.8rem;
-  transition: transform 0.2s ease;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
 }
 
 .dropdown-button.active .dropdown-arrow {
@@ -62,77 +78,84 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   z-index: 1000;
 }
 
 .dropdown-content.show {
   display: block;
-  animation: dropdownFade 0.2s ease;
+  animation: dropdownFade 0.3s ease;
 }
 
 .dropdown-content button {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.8rem;
   border: none;
   background: none;
-  color: #333;
-  font-size: 1rem;
+  color: #ffffff;
+  font-size: 1.1rem;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+}
+
+.dropdown-content button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .platform-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-/* Persistent Home Button */
 .home-button-overlay {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: static;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
   display: flex;
   justify-content: center;
-  z-index: 1000;
+}
+
+.discord-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .home-button-persistent {
-  background-color: #305cde;
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 1rem 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .home-button-persistent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Animation */
 @keyframes dropdownFade {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -140,125 +163,217 @@ body {
   }
 }
 
-/* Typography Updates */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.platform-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 1.2rem 2.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2rem;
+  backdrop-filter: blur(8px);
+}
+
+.platform-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideDown 1s ease-out;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  color: #2a2a2a;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
 }
 
 p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #444;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
 }
 
-/* Keep existing styles but remove old home button styles */
-
-/* Button Styles */
-.nav-button, .platform-button, .join-button, .dropdown-button {
-  background-color: #305cde;
-  color: white;
-  padding: 1.2rem 2.5rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.3rem;
+.nav-button, .join-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 1.2rem 2.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
   margin: 1rem;
   min-width: 200px;
 }
 
-.nav-button:hover, .platform-button:hover, .join-button:hover {
+.nav-button:hover, .join-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Update video grid layout */
 .video-grid {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row-reverse;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2.5rem;
   width: 100%;
 }
 
 .video-item {
-  flex: 1 1 400px;
-  max-width: 600px;
-  min-width: 300px;
-  background: white;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+  transform: translateY(-5px);
 }
 
 .video-item iframe {
   aspect-ratio: 16 / 9;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 100%;
   height: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Update navigation buttons container */
 .nav-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 }
 
-/* Platform specific button styles */
 .platform-button.youtube-btn {
-  background-color: #ff0000;
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.3);
 }
 
 .platform-button.twitch-btn {
-  background-color: #6441a5;
+  background: rgba(100, 65, 165, 0.2);
+  border-color: rgba(100, 65, 165, 0.3);
+}
+
+.platform-button.bluesky-btn {
+  background: rgba(0, 133, 255, 0.2);
+  border-color: rgba(0, 133, 255, 0.3);
 }
 
 .join-button {
-  background-color: #7289da;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 2rem;
-}
-
-/* Add this with your other platform button styles */
-.platform-button.bluesky-btn {
-  background-color: #0085ff;
-}
-
-/* Optional: Add hover state */
-.platform-button.bluesky-btn:hover {
-  background-color: #0066cc;
+  background: rgba(114, 137, 218, 0.2);
+  border-color: rgba(114, 137, 218, 0.3);
 }
 
 .discord-rules {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .rule-box {
-  background-color: rgba(255, 255, 255, 0.25); /* 75% transparent white */
-  border: 1px solid #ccc; /* Border for the rule box */
-  border-radius: 8px; /* Rounded corners */
-  padding: 1rem; /* Padding inside the box */
-  margin: 1rem 0; /* Space between each rule */
-  width: 90%; /* Width of the rule box */
-  max-width: 600px; /* Maximum width */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for floating effect */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 0.5rem 0;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.rule-box strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2.5rem 0;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-item h3 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.stat-item p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .nav-button, .platform-button, .join-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .video-grid {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 }
