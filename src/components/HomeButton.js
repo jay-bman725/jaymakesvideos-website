@@ -5,7 +5,7 @@ function HomeButton() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (location.pathname === '/') {
+  if (location.pathname === '/' || location.pathname === '/404') {
     return null;
   }
 
@@ -21,4 +21,4 @@ function HomeButton() {
   );
 }
 
-export default HomeButton; 
+export default HomeButton;

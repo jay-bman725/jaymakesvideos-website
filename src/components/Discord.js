@@ -108,7 +108,7 @@ function Discord() {
   ];
 
   return (
-    <div className="discord-container">
+    <div className="discord-container page-container">
       <h1>Join Our Discord Community!</h1>
       
       <div className="discord-rules">
@@ -123,16 +123,18 @@ function Discord() {
         </div>
       </div>
 
-      <a 
-        href="https://discord.gg/98d9dyrYrt"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="join-button"
-      >
-        Join the Discord Server
-      </a>
+      <div className="discord-buttons">
+        <a 
+          href="https://discord.gg/98d9dyrYrt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="join-button"
+        >
+          Join the Discord Server
+        </a>
+      </div>
     </div>
   );
 }
 
-export default Discord; 
+export default Discord;

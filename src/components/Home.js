@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className="page-container home-page">
       <h1>Welcome to JayMakesVideos</h1>
-      <p>Check out my content and join our Discord community!</p>
+      <p>Enjoy your stay ;)</p>
       
       <div className="nav-buttons">
         <button 
@@ -28,9 +28,15 @@ function Home() {
         >
           Follow My Bluesky
         </button>
+        <button 
+          className="nav-button github-btn"
+          onClick={() => window.open('https://github.com/jay-bman725/jaymakesvideos-website', '_blank')}
+        >
+          View on GitHub
+        </button>
       </div>
     </div>
   );
 }
 
-export default Home; 
+export default Home;

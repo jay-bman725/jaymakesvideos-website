@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Videos from './components/Videos';
 import Discord from './components/Discord';
@@ -8,6 +8,7 @@ import YouTube from './components/YouTube';
 import Twitch from './components/Twitch';
 import Bluesky from './components/Bluesky';
 import HomeButton from './components/HomeButton';
+import NotFound from './components/NotFound';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -23,6 +24,8 @@ function App() {
           <Route path="/youtube" element={<YouTube />} />
           <Route path="/twitch" element={<Twitch />} />
           <Route path="/bsky" element={<Bluesky />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
         <SpeedInsights />
         <HomeButton />
