@@ -28,6 +28,8 @@ body {
 
 .page-container:not(.home-page) {
   background: rgba(255, 255, 255, 0.08);
+  background-color: rgba(30, 30, 54, 0.95);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -82,6 +84,8 @@ body {
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(30, 30, 54, 0.95);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -176,6 +180,7 @@ body {
 
 .platform-button {
   background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(30, 30, 54, 0.95);
   color: #ffffff;
   padding: 1.2rem 2.8rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -187,6 +192,7 @@ body {
   text-decoration: none;
   display: inline-block;
   margin-top: 2rem;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
