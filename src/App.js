@@ -9,6 +9,8 @@ import Twitch from './components/Twitch';
 import Bluesky from './components/Bluesky';
 import HomeButton from './components/HomeButton';
 import NotFound from './components/NotFound';
+import StartPage from './components/StartPage';
+import GitHubCorner from './components/GitHubCorner';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -18,6 +20,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/homepage" element={<StartPage />} />
           <Route path="/content" element={<Content />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/discord" element={<Discord />} />
@@ -29,6 +32,7 @@ function App() {
         </Routes>
         <SpeedInsights />
         <HomeButton />
+        <GitHubCorner />
       </div>
     </Router>
   );

@@ -382,4 +382,38 @@ p {
     padding: 1.5rem;
     gap: 1.5rem;
   }
+
+  .github-corner img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.github-corner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.github-corner img {
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: block;
+}
+
+.github-corner:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.github-corner:hover img {
+  opacity: 1;
 }

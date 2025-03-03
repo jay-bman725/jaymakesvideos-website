@@ -28,15 +28,10 @@ function Home() {
         >
           Follow My Bluesky
         </button>
-        <button 
-          className="nav-button github-btn"
-          onClick={() => window.open('https://github.com/jay-bman725/jaymakesvideos-website', '_blank')}
-        >
-          View on GitHub
-        </button>
       </div>
     </div>
   );
+
 }
 
 export default Home;
