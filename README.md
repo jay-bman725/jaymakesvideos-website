@@ -1,4 +1,4 @@
-> ⚠️ **Warning:** Light mode is currently in beta.
+> ⚠️ **Warning:** The theme switching feature is currently in beta. It may sometimes apply immediately, but if it doesn't, please refresh the website and the changes should take effect. If you encounter any errors, please open a GitHub issue.
 > 
 # jaymakesvideos-website
 
