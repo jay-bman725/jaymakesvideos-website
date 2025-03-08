@@ -5,23 +5,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* Set light theme as default */
 :root {
-  --bg-gradient-start: #1e1e36;
-  --bg-gradient-middle: #1a2648;
-  --bg-gradient-end: #134272;
-  --text-color: #f5f5f5;
-  --container-bg: rgba(30, 30, 54, 0.95);
-  --container-border: rgba(255, 255, 255, 0.1);
-  --button-bg: rgba(255, 255, 255, 0.1);
-  --button-border: rgba(255, 255, 255, 0.2);
-  --button-hover-bg: rgba(255, 255, 255, 0.15);
-  --box-shadow: rgba(0, 0, 0, 0.15);
-  --box-shadow-hover: rgba(0, 0, 0, 0.2);
-}
-
-:root[data-theme="light"] {
-  --bg-gradient-start: #f0f2f5;
-  --bg-gradient-middle: #e4e6f0;
+  --bg-gradient-start: #49e4ff;
+  --bg-gradient-middle: #00ffee;
   --bg-gradient-end: #d8e1f3;
   --text-color: #333333;
   --container-bg: rgba(255, 255, 255, 0.95);
@@ -63,12 +50,11 @@ body {
 }
 
 .page-container:not(.home-page) {
-  background: rgba(255, 255, 255, 0.08);
-  background-color: rgba(30, 30, 54, 0.95);
+  background: var(--container-bg);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px var(--box-shadow);
+  border: 1px solid var(--container-border);
 }
 
 .content-menu {
@@ -80,9 +66,9 @@ body {
 .dropdown-button {
   padding: 1.2rem 2.8rem;
   font-size: 1.2rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--button-border);
   border-radius: 16px;
   cursor: pointer;
   display: flex;
@@ -90,18 +76,19 @@ body {
   gap: 0.8rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .dropdown-button.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--button-hover-bg);
+  border-color: var(--button-border);
 }
 
 .dropdown-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--button-hover-bg);
 }
 
 .dropdown-arrow {
@@ -119,13 +106,12 @@ body {
   top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.1);
-  background-color: rgba(30, 30, 54, 0.95);
+  background: var(--container-bg);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--container-border);
+  box-shadow: 0 4px 24px var(--box-shadow-hover);
   overflow: hidden;
   z-index: 1000;
 }
@@ -143,7 +129,7 @@ body {
   padding: 1.2rem 1.8rem;
   border: none;
   background: none;
-  color: #ffffff;
+  color: var(--text-color);
   font-size: 1.1rem;
   text-align: left;
   cursor: pointer;
@@ -151,7 +137,7 @@ body {
 }
 
 .dropdown-content button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--button-hover-bg);
 }
 
 .platform-icon {
@@ -174,22 +160,23 @@ body {
 }
 
 .home-button-persistent {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--button-bg);
+  color: var(--text-color);
   padding: 1rem 2.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--button-border);
   border-radius: 12px;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .home-button-persistent:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--button-hover-bg);
 }
 
 @keyframes dropdownFade {
@@ -215,11 +202,10 @@ body {
 }
 
 .platform-button {
-  background: rgba(255, 255, 255, 0.1);
-  background-color: rgba(30, 30, 54, 0.95);
-  color: #ffffff;
+  background: var(--button-bg);
+  color: var(--text-color);
   padding: 1.2rem 2.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--button-border);
   border-radius: 16px;
   font-size: 1.2rem;
   font-weight: 500;
@@ -236,7 +222,7 @@ body {
   .platform-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--button-hover-bg);
   }
 }
 
@@ -244,7 +230,7 @@ h1 {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #ffffff;
+  color: var(--text-color);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: slideDown 1s ease-out;
 }
@@ -252,27 +238,28 @@ h1 {
 h2 {
   font-size: 2.2rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-color);
   margin-bottom: 1.5rem;
 }
 
 p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
   margin-bottom: 1.5rem;
 }
 
 .nav-button, .join-button {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--button-bg);
+  color: var(--text-color);
   padding: 1.2rem 2.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--button-border);
   border-radius: 16px;
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   margin: 1rem;
   min-width: 200px;
@@ -281,7 +268,7 @@ p {
 .nav-button:hover, .join-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--button-hover-bg);
 }
 
 .video-grid {
@@ -293,11 +280,11 @@ p {
 }
 
 .video-item {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--container-bg);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px var(--box-shadow);
+  border: 1px solid var(--container-border);
   transition: transform 0.3s ease;
 }
 
@@ -322,23 +309,23 @@ p {
 }
 
 .platform-button.youtube-btn {
-  background: rgba(255, 0, 0, 0.2);
-  border-color: rgba(255, 0, 0, 0.3);
+  background: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.15);
 }
 
 .platform-button.twitch-btn {
-  background: rgba(100, 65, 165, 0.2);
-  border-color: rgba(100, 65, 165, 0.3);
+  background: rgba(100, 65, 165, 0.1);
+  border-color: rgba(100, 65, 165, 0.15);
 }
 
 .platform-button.bluesky-btn {
-  background: rgba(0, 133, 255, 0.2);
-  border-color: rgba(0, 133, 255, 0.3);
+  background: rgba(0, 133, 255, 0.1);
+  border-color: rgba(0, 133, 255, 0.15);
 }
 
 .join-button {
-  background: rgba(114, 137, 218, 0.2);
-  border-color: rgba(114, 137, 218, 0.3);
+  background: rgba(114, 137, 218, 0.1);
+  border-color: rgba(114, 137, 218, 0.15);
 }
 
 .discord-rules {
@@ -350,19 +337,20 @@ p {
 }
 
 .rule-box {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--container-bg);
+  border: 1px solid var(--container-border);
   border-radius: 16px;
   padding: 1.5rem;
   margin: 0.5rem 0;
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 24px var(--box-shadow);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .rule-box strong {
-  color: #ffffff;
+  color: var(--text-color);
   display: block;
   margin-bottom: 1rem;
   font-size: 1.2rem;
@@ -376,11 +364,12 @@ p {
 }
 
 .stat-item {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--container-bg);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px var(--box-shadow);
+  border: 1px solid var(--container-border);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   transition: transform 0.3s ease;
 }
@@ -390,13 +379,13 @@ p {
 }
 
 .stat-item h3 {
-  color: #ffffff;
+  color: var(--text-color);
   margin-bottom: 1rem;
   font-size: 1.4rem;
 }
 
 .stat-item p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
   margin: 0;
   font-size: 1.1rem;
 }

@@ -11,6 +11,7 @@ import HomeButton from './components/HomeButton';
 import NotFound from './components/NotFound';
 import StartPage from './components/StartPage';
 import GitHubCorner from './components/GitHubCorner';
+import ThemeToggle from './components/ThemeToggle';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -33,6 +34,7 @@ function App() {
         <SpeedInsights />
         <HomeButton />
         <GitHubCorner />
+        <ThemeToggle />
       </div>
     </Router>
   );
