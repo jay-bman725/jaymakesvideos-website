@@ -1,4 +1,5 @@
 import React from 'react';
+import githubIcon from '../assets/github-icon.svg';
 
 function GitHubCorner() {
   return (
@@ -9,7 +10,7 @@ function GitHubCorner() {
       className="github-corner"
       aria-label="View source on GitHub"
     >
-      <img src="/github-icon.svg" alt="GitHub" />
+      <img src={githubIcon} alt="GitHub" />
     </a>
   );
 }

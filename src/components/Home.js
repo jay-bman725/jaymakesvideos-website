@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import welcomeMessages from '../assets/homepage-welcome.json';
 
 function Home() {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ function Home() {
   return (
     <div className="page-container home-page">
       <h1>Welcome to JayMakesVideos</h1>
-      <p>Enjoy your stay ;)</p>
+      <p>{welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]}</p>
       
       <div className="nav-buttons">
         <button 
