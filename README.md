@@ -1,3 +1,5 @@
+> ⚠️ **Warning:** Light mode is currently in beta.
+> 
 # jaymakesvideos-website
 
 Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub for all things related to my online presence. Here, you'll find links to my social media profiles, a little bit about me, and how you can get in touch. Feel free to explore and connect!
