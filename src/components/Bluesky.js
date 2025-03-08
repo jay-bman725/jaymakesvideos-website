@@ -1,9 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Bluesky() {
-  const navigate = useNavigate();
-
   return (
     <div className="page-container platform-page">
       <h1>My Bluesky Profile</h1>
@@ -41,4 +38,4 @@ function Bluesky() {
   );
 }
 
-export default Bluesky; 
+export default Bluesky;
