@@ -1,5 +1,6 @@
-> ⚠️ **Warning:** The theme switching feature is currently in beta. It may sometimes apply immediately, but if it doesn't, please refresh the website and the changes should take effect. If you encounter any errors, please open a GitHub issue.
-> 
+> ⚠️ **Beta Notice:**  
+> The theme switching feature and mobile support are currently in beta. If you experience any issues, please report them by opening a GitHub issue.
+
 # jaymakesvideos-website
 
 Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub for all things related to my online presence. Here, you'll find links to my social media profiles, a little bit about me, and how you can get in touch. Feel free to explore and connect!
