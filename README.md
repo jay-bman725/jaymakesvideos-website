@@ -17,7 +17,7 @@ Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub f
 
 ## Browser Requirements
 
-This website requires **JavaScript** to function properly. Please ensure that JavaScript is enabled in your browser settings for the best experience.
+This website requires **JavaScript** to function properly. Please ensure that JavaScript is enabled in your browser settings for the best experience. I reccomend Chrome and any Chromium based browser, but any browser **should** work
 
 ---
 
