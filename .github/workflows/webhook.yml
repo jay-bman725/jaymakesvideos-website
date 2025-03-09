@@ -15,9 +15,9 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           COMMIT_TITLE=$(echo "$COMMIT_MESSAGE" | head -n 1)
-          COMMIT_DESCRIPTION=$(echo "$COMMIT_MESSAGE" | tail -n +2)
+          COMMIT_DESCRIPTION=$(echo "$COMMIT_MESSAGE" | tail -n +2 | sed ':a;N;$!ba;s/\n/\\n/g')
 
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"content\": \"@everyone New commit pushed: ${COMMIT_URL}\nCheck out the website: <https://jaymakesvideos.xyz>\n\n\`\`\`\n${COMMIT_TITLE}\n\n${COMMIT_DESCRIPTION}\n\`\`\`\"}" \
+            -d "{\"content\": \"@everyone New commit pushed: ${COMMIT_URL}\\nCheck out the website: <https://jaymakesvideos.xyz>\\n\\n\`\`\`${COMMIT_TITLE}\\n\\n${COMMIT_DESCRIPTION}\`\`\`\"}" \
             ${{ secrets.DISCORD_WEBHOOK_URL }}
