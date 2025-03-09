@@ -16,4 +16,4 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json" \
             -d "{\"content\": \"New commit pushed: ${COMMIT_URL}\"}" \
-            https://discord.com/api/webhooks/1348146455185195018/PEawKLhT8rlgfP_aRc0IIVDJXn0LNi-OneKnEcSNwX1UF0gE2QzkHjxgrG0XV1-tks8s
+            ${{ secrets.DISCORD_WEBHOOK_URL }}
