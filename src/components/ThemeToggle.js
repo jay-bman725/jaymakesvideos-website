@@ -3,15 +3,19 @@ import Cookies from 'js-cookie';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(Cookies.get('theme') || 'dark');
+  const [theme, setTheme] = useState(Cookies.get('theme') || 'default');
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [failedTheme, setFailedTheme] = useState(null);
 
   const loadThemeFile = async (themeName) => {
     try {
-      await import(`../themes/${themeName}.css`);
-      console.log(`Theme '${themeName}' loaded successfully`);
+      if (themeName !== 'default') {
+        await import(`../themes/${themeName}.css`);
+        console.log(`Theme '${themeName}' loaded successfully`);
+      } else {
+        console.log('Using default theme from App.css');
+      }
       setShowErrorModal(false);
       setFailedTheme(null);
     } catch (error) {
@@ -43,10 +47,9 @@ const ThemeToggle = () => {
   };
 
   const handleUseDefault = () => {
-    const defaultTheme = 'dark';
+    const defaultTheme = 'default';
     setTheme(defaultTheme);
     Cookies.set('theme', defaultTheme, { expires: 365 });
-    loadThemeFile(defaultTheme);
     setShowErrorModal(false);
   };
 
@@ -74,6 +77,12 @@ const ThemeToggle = () => {
                 onClick={() => handleThemeChange('light')}
               >
                 Light Mode
+              </button>
+              <button
+                className="theme-button default"
+                onClick={() => handleThemeChange('default')}
+              >
+                Default Theme
               </button>
             </div>
           </div>
