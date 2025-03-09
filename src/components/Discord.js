@@ -1,79 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Discord() {
-  const rules = [
+  const [rulesConfirmed, setRulesConfirmed] = useState(false);
+  const [showError, setShowError] = useState(false);
+
+  const handleConfirmRules = () => {
+    const userConfirmed = window.confirm('Do you confirm that you understand and accept our Discord rules?');
+    if (userConfirmed) {
+      setRulesConfirmed(true);
+      setShowError(false);
+    } else {
+      window.location.href = '/404';
+    }
+  };
+
+  const handleJoinAttempt = () => {
+    if (!rulesConfirmed) {
+      setShowError(true);
+      return;
+    }
+  };
+
+  const Rules = [
     {
-      title: "Respect All Members",
+      title: "Be Kind and Respectful",
       description: (
         <>
-          <strong>1.1 - General Respect:</strong> All members must treat others with respect, regardless of race, gender, religion, nationality, or personal beliefs. Harassment, bigotry, and personal attacks will not be tolerated.<br />
-          <strong>1.2 - No Hate Speech:</strong> Hate speech in any form, whether it be slurs, derogatory remarks, or otherwise offensive language, is strictly forbidden.<br />
-          <strong>1.3 - Constructive Discussions:</strong> Disagreements should remain civil. Debate is fine, but avoid name-calling or intentionally provoking others.
+          • Treat everyone with respect - we're all here to have a good time! 😊<br />
+          • No hate speech, bullying, or harassment of any kind<br />
+          • Keep discussions friendly - it's okay to disagree, just be nice about it
         </>
       )
     },
     {
-      title: "No Spamming",
+      title: "Keep the Chat Clean",
       description: (
         <>
-          <strong>2.1 - Repetitive Content:</strong> Avoid posting the same message, image, or reaction repeatedly in a short period. It clutters the chat and disrupts discussions.<br />
-          <strong>2.2 - Off-topic Spam:</strong> Keep discussions relevant to the channel. Don't post irrelevant content that distracts from ongoing conversations.<br />
-          <strong>2.3 - Avoid Spam Bots:</strong> Using bots to spam content or reactions is strictly prohibited.
+          • Don't spam messages or reactions - it makes the chat hard to read<br />
+          • Stay on topic in each channel<br />
+          • No bots or automated messages without permission
         </>
       )
     },
     {
-      title: "Keep Content Appropriate",
+      title: "Keep it Family-Friendly",
       description: (
         <>
-          <strong>3.1 - No NSFW Content:</strong> Sharing Not Safe For Work (NSFW) content, including explicit images, language, or videos, is forbidden.<br />
-          <strong>3.2 - Language Use:</strong> Keep language clean and appropriate for all ages. Excessive swearing or crude jokes will not be tolerated.<br />
-          <strong>3.3 - Offensive Material:</strong> Avoid posting offensive memes, jokes, or other content that might make others uncomfortable.
+          • No adult content (NSFW) or explicit material<br />
+          • Swearing is allowed in general conversation, but not when directed at others. Keep it appropriate for all ages.<br />
+          • Think twice before posting memes or jokes - make sure they're appropriate
         </>
       )
     },
     {
-      title: "No Advertising",
+      title: "No Self-Promotion",
       description: (
         <>
-          <strong>4.1 - Unsolicited Ads:</strong> Do not promote other servers, websites, products, or services without the explicit permission of the server admins.<br />
-          <strong>4.2 - No Self-Promotion:</strong> Self-promotion, including links to personal content like Twitch streams, YouTube videos, or social media accounts, is prohibited unless approved by staff.
+          • Ask staff before sharing any links or advertisements<br />
+          • This includes your own social media, videos, or streams<br />
+          • We want organic conversations, not promotional content
         </>
       )
     },
     {
-      title: "Respect Privacy",
+      title: "Protect Privacy",
       description: (
         <>
-          <strong>5.1 - Personal Information:</strong> Do not share someone else’s personal information, such as names, addresses, or phone numbers, without their explicit consent.<br />
-          <strong>5.2 - Privacy in DMs:</strong> Do not share screenshots or private conversations from direct messages (DMs) without the consent of the parties involved.
+          • Never share someone's personal info without their permission<br />
+          • Keep private messages private - don't share screenshots<br />
+          • Respect everyone's right to privacy
         </>
       )
     },
     {
-      title: "Follow Discord's Terms of Service",
+      title: "Follow the Rules",
       description: (
         <>
-          <strong>6.1 - Discord Community Guidelines:</strong> All users must adhere to Discord's Community Guidelines at all times.<br />
-          <strong>6.2 - Terms of Service:</strong> You must also comply with Discord’s Terms of Service.
+          • Follow Discord's official rules and guidelines<br />
+          • Use channels for their intended purpose<br />
+          • Don't try to find loopholes in the rules
         </>
       )
     },
     {
-      title: "Use Channels Appropriately",
+      title: "Be Honest",
       description: (
         <>
-          <strong>7.1 - Off-topic Posting:</strong> Ensure that all posts are relevant to the specific channel you're posting in. Each channel has a description or pinned message outlining its purpose.<br />
-          <strong>7.2 - Channel-specific Rules:</strong> Follow any additional channel-specific rules that may be set by staff or pinned in the channel.
-        </>
-      )
-    },
-    {
-      title: "No Impersonation",
-      description: (
-        <>
-          <strong>8.1 - Member Impersonation:</strong> Do not impersonate other users, especially staff members or other members of the community. This includes usernames, profile pictures, or behavior intended to deceive others.<br />
-          <strong>8.2 - Public Figure Impersonation:</strong> Impersonation of public figures, famous personalities, or celebrities is also not allowed.
+          • Don't pretend to be someone else<br />
+          • Use an appropriate username and profile picture<br />
+          • Be yourself!
         </>
       )
     },
@@ -81,27 +96,19 @@ function Discord() {
       title: "Listen to Staff",
       description: (
         <>
-          <strong>9.1 - Follow Instructions:</strong> Staff decisions and instructions are final and should be respected at all times. Staff actions are taken in the interest of maintaining a safe, welcoming environment for all.<br />
-          <strong>9.2 - Handling Disputes:</strong> If you have an issue with a staff member's decision, address it privately and respectfully through a support ticket or DM rather than publicly.
+          • Staff are here to help keep the server friendly and safe<br />
+          • Follow staff instructions when given<br />
+          • If you have concerns, talk to staff privately
         </>
       )
     },
     {
-      title: "Report Issues",
+      title: "Report Problems",
       description: (
         <>
-          <strong>10.1 - Reporting Rule Breakers:</strong> If you witness someone breaking the rules, do not engage with them directly. Instead, report the issue to staff using a support ticket or a DM.<br />
-          <strong>10.2 - Support Ticket Usage:</strong> All reports should be made through the designated support channel to ensure the issue is handled discreetly and efficiently.
-        </>
-      )
-    },
-    {
-      title: "No Loophole Abuse",
-      description: (
-        <>
-          <strong>11.1 - General Loophole Abuse:</strong> Do not attempt to exploit loopholes, ambiguities, or technicalities in the rules to justify inappropriate behavior.<br />
-          <strong>11.2 - Good Faith Behavior:</strong> All members are expected to act in good faith and uphold the spirit of the rules. Attempts to ‘game the system’ by manipulating or finding loopholes will be treated as violations of this rule.<br />
-          <strong>11.3 - Rules Apply Globally:</strong> All rules are subject to staff interpretation, and exploiting any gap or ambiguity will result in enforcement actions as if the rule were explicitly written.
+          • See someone breaking rules? Let staff know privately<br />
+          • Use support tickets for reporting issues<br />
+          • Don't start drama - let staff handle problems
         </>
       )
     }
@@ -114,7 +121,7 @@ function Discord() {
       <div className="discord-rules">
         <h2>Discord Rules</h2>
         <div>
-          {rules.map((rule, index) => (
+          {Rules.map((rule, index) => (
             <div key={index} className="rule-box">
               <strong>{rule.title}</strong>
               <p>{rule.description}</p>
@@ -124,14 +131,28 @@ function Discord() {
       </div>
 
       <div className="discord-buttons">
-        <a 
-          href="https://discord.gg/98d9dyrYrt"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="join-button"
-        >
-          Join the Discord Server
-        </a>
+        {rulesConfirmed ? (
+          <a 
+            href="https://discord.gg/98d9dyrYrt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="join-button"
+          >
+            Join the Discord Server
+          </a>
+        ) : (
+          <button 
+            onClick={handleConfirmRules}
+            className="join-button"
+          >
+            I Understand and Accept the Rules
+          </button>
+        )}
+        {showError && (
+          <div className="error-message">
+            Please read and confirm that you understand the rules before joining.
+          </div>
+        )}
       </div>
     </div>
   );
