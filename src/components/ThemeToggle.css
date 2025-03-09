@@ -90,6 +90,26 @@
   box-shadow: 0 4px 12px var(--box-shadow-hover);
 }
 
+.theme-button-container {
+  position: relative;
+}
+
+.theme-tooltip {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: var(--container-bg);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px var(--box-shadow);
+  white-space: nowrap;
+  animation: fadeIn 0.2s ease;
+  z-index: 1002;
+  border: 1px solid var(--container-border);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

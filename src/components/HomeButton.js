@@ -5,7 +5,11 @@ function HomeButton() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  if (location.pathname === '/' || location.pathname === '/404') {
+  // Hide the button on home, 404, and pages with their own navigation
+  if (location.pathname === '/' || 
+      location.pathname === '/404' || 
+      location.pathname === '/content' || 
+      location.pathname === '/homepage') {
     return null;
   }
 

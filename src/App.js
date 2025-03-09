@@ -12,6 +12,7 @@ import NotFound from './components/NotFound';
 import StartPage from './components/StartPage';
 import GitHubCorner from './components/GitHubCorner';
 import ThemeToggle from './components/ThemeToggle';
+import GradientCustomizer from './components/GradientCustomizer';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -35,6 +36,7 @@ function App() {
         <HomeButton />
         <GitHubCorner />
         <ThemeToggle />
+        <GradientCustomizer />
       </div>
     </Router>
   );

@@ -6,6 +6,7 @@ code {
 }
 
 :root {
+  --page-gradient: linear-gradient(to right, #3498db, #2ecc71);
   --bg-color: #ffffff;
   --text-color: #333333;
   --container-bg: #ffffff;
@@ -17,20 +18,8 @@ code {
   --box-shadow-hover: rgba(0, 0, 0, 0.15);
 }
 
-:root[data-theme="dark"] {
-  --bg-color: #1e1e36;
-  --text-color: #f5f5f5;
-  --container-bg: rgba(30, 30, 54, 0.95);
-  --container-border: rgba(255, 255, 255, 0.1);
-  --button-bg: rgba(255, 255, 255, 0.1);
-  --button-border: rgba(255, 255, 255, 0.2);
-  --button-hover-bg: rgba(255, 255, 255, 0.15);
-  --box-shadow: rgba(0, 0, 0, 0.15);
-  --box-shadow-hover: rgba(0, 0, 0, 0.2);
-}
-
 body {
-  background: var(--bg-color);
+  background: var(--page-gradient);
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -439,6 +428,143 @@ p {
     font-size: 1rem;
   }
 }
+.gradient-customizer {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.gradient-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.color-pickers {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.color-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-picker input[type="color"] {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.direction-picker {
+  text-align: center;
+}
+
+.direction-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.direction-button {
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.direction-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.direction-button.active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.github-corner img {
+  width: 40px;
+  height: 40px;
+}
+
+.gradient-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.gradient-modal {
+  background: var(--container-bg);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px var(--box-shadow);
+  border: 1px solid var(--container-border);
+  max-width: 90%;
+  width: 500px;
+  animation: dropdownFade 0.3s ease;
+}
+
+.gradient-modal h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.close-gradient-modal {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--button-border);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.close-gradient-modal:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--box-shadow);
+}
+
+.direction-button {
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.direction-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.direction-button.active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 .github-corner img {
   width: 40px;
   height: 40px;

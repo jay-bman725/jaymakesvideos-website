@@ -7,6 +7,7 @@ const ThemeToggle = () => {
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [failedTheme, setFailedTheme] = useState(null);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const loadThemeFile = async (themeName) => {
     try {
@@ -18,6 +19,8 @@ const ThemeToggle = () => {
       }
       setShowErrorModal(false);
       setFailedTheme(null);
+      // Set theme in localStorage for other components to access
+      localStorage.setItem('currentTheme', themeName);
     } catch (error) {
       console.error('Error loading theme:', error);
       setFailedTheme(themeName);
@@ -39,7 +42,7 @@ const ThemeToggle = () => {
     Cookies.set('theme', newTheme, { expires: 365 });
     loadThemeFile(newTheme);
     setShowModal(false);
-    window.location.reload(); // Add page refresh when theme changes
+    window.location.reload();
   };
 
   const handleRetry = () => {
@@ -58,6 +61,15 @@ const ThemeToggle = () => {
     setShowModal(true);
   };
 
+  useEffect(() => {
+    const handleThemeToggle = () => {
+      setShowModal(true);
+    };
+
+    window.addEventListener('theme-toggle', handleThemeToggle);
+    return () => window.removeEventListener('theme-toggle', handleThemeToggle);
+  }, []);
+
   return (
     <>
       {showModal && (
@@ -69,21 +81,35 @@ const ThemeToggle = () => {
               <button
                 className="theme-button dark"
                 onClick={() => handleThemeChange('dark')}
+                data-active={theme === 'dark'}
               >
                 Dark Mode
               </button>
               <button
                 className="theme-button light"
                 onClick={() => handleThemeChange('light')}
+                data-active={theme === 'light'}
               >
                 Light Mode
               </button>
-              <button
-                className="theme-button default"
-                onClick={() => handleThemeChange('default')}
+              <div 
+                className="theme-button-container"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
               >
-                Default Theme
-              </button>
+                <button
+                  className="theme-button default"
+                  onClick={() => handleThemeChange('default')}
+                  data-active={theme === 'default'}
+                >
+                  Default Theme
+                </button>
+                {showTooltip && (
+                  <div className="theme-tooltip">
+                    Select the default theme to customize the website gradient colors!
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -98,7 +124,7 @@ const ThemeToggle = () => {
                 className="theme-button retry"
                 onClick={handleRetry}
               >
-                Retry Loading
+                Retry
               </button>
               <button
                 className="theme-button default"
@@ -116,13 +142,7 @@ const ThemeToggle = () => {
           </div>
         </div>
       )}
-      <button
-        className={`theme-toggle ${theme === 'light' ? 'light' : 'dark'}`}
-        onClick={() => handleThemeChange(theme === 'light' ? 'dark' : 'light')}
-        aria-label="Toggle theme"
-      >
-        {theme === 'light' ? '🌙' : '☀️'}
-      </button>
+
     </>
   );
 };
