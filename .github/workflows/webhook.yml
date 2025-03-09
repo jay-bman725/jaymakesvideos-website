@@ -15,5 +15,5 @@ jobs:
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"content\": \"@everyone New commit pushed: ${COMMIT_URL}\nCheck out the website: https://jaymakesvideos.xyz\"}" \
+            -d "{\"content\": \"@everyone New commit pushed: ${COMMIT_URL}\nCheck out the website: <https://jaymakesvideos.xyz>\"}" \
             ${{ secrets.DISCORD_WEBHOOK_URL }}
