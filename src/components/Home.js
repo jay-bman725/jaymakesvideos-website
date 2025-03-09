@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div className="page-container home-page">
-      <h1>Welcome to JayMakesVideos</h1>
+      <h1>Welcome to JayMakesVideos!</h1>
       <p>{welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]}</p>
       
       <div className="nav-buttons">

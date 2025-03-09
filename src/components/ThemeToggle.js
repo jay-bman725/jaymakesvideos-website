@@ -35,6 +35,7 @@ const ThemeToggle = () => {
     Cookies.set('theme', newTheme, { expires: 365 });
     loadThemeFile(newTheme);
     setShowModal(false);
+    window.location.reload(); // Add page refresh when theme changes
   };
 
   const handleRetry = () => {
