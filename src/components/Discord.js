@@ -10,7 +10,7 @@ function Discord() {
       setRulesConfirmed(true);
       setShowError(false);
     } else {
-      window.location.href = '/404';
+      window.location.href = '/discord';
     }
   };
 
