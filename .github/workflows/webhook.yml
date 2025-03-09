@@ -1,4 +1,4 @@
-name: Send Discord Webhook with Commit Details
+name: Send Discord Webhook with Commit URL
 
 on:
   push:
@@ -9,13 +9,11 @@ jobs:
   send-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Discord webhook with commit details
+      - name: Send Discord webhook with commit URL
         env:
-          COMMIT_DETAILS: ${{ toJson(github.event.head_commit) }}
-          REF: ${{ github.ref }}
-          SHA: ${{ github.sha }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"content\": \"New commit pushed on ${REF} with SHA ${SHA}.\\nCommit details: ${COMMIT_DETAILS}\"}" \
+            -d "{\"content\": \"New commit pushed: ${COMMIT_URL}\"}" \
             https://discord.com/api/webhooks/1348146455185195018/PEawKLhT8rlgfP_aRc0IIVDJXn0LNi-OneKnEcSNwX1UF0gE2QzkHjxgrG0XV1-tks8s
