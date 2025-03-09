@@ -1,9 +1,14 @@
 > ⚠️ **Beta Notice:**  
-> The theme switching feature and mobile support are currently in beta. If you experience any issues, please report them by opening a GitHub issue.
+> The theme switching feature, custom gradients, and mobile support are currently in beta. If you experience any issues, please report them by opening a GitHub issue.
+
 
 # jaymakesvideos-website
 
 Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub for all things related to my online presence. Here, you'll find links to my social media profiles, a little bit about me, and how you can get in touch. Feel free to explore and connect!
+
+---
+## Custom Gradients and Default Theme
+Custom gradients can only be modified while using the default theme. If you have a different theme enabled, you will need to switch back to the default theme in order to customize gradients.
 
 ---
 
