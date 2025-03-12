@@ -55,10 +55,10 @@
 }
 
 .theme-modal p {
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-}
-
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+  }
+  
 .theme-buttons {
   display: flex;
   gap: 1rem;
