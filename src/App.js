@@ -13,6 +13,7 @@ import StartPage from './components/StartPage';
 import GitHubCorner from './components/GitHubCorner';
 import ThemeToggle from './components/ThemeToggle';
 import GradientCustomizer from './components/GradientCustomizer';
+import ScrollToTop from './components/ScrollToTop';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -30,8 +31,9 @@ function App() {
           <Route path="/twitch" element={<Twitch />} />
           <Route path="/bsky" element={<Bluesky />} />
           <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="*" element={<Navigate to={`/404?invalid_url=${encodeURIComponent(window.location.pathname)}`} replace />} />
         </Routes>
+        <ScrollToTop />
         <SpeedInsights />
         <HomeButton />
         <GitHubCorner />
