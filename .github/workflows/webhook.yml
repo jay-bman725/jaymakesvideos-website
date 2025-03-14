@@ -17,12 +17,20 @@ jobs:
           COMMIT_TITLE=$(echo "$COMMIT_MESSAGE" | head -n 1)
           COMMIT_DESCRIPTION=$(echo "$COMMIT_MESSAGE" | tail -n +2)
 
-          # Use jq to properly escape JSON content
+          # Ensure description is not empty
+          if [ -z "$COMMIT_DESCRIPTION" ]; then
+            COMMIT_DESCRIPTION="(No additional description)"
+          fi
+
+          # Format the message correctly
           JSON_PAYLOAD=$(jq -n \
             --arg url "$COMMIT_URL" \
             --arg title "$COMMIT_TITLE" \
             --arg desc "$COMMIT_DESCRIPTION" \
-            '{content: "@everyone New commit pushed: \($url)\nCheck out the website: <https://jaymakesvideos.xyz>\n\n```" + $title + "\n\n" + $desc + "```"}')
+            --arg site "https://jaymakesvideos.xyz" \
+            '{content: "@everyone New commit pushed: " + $url + "\nCheck out the website: <" + $site + ">\n\n```" + $title + "\n\n" + $desc + "```"}')
+
+          echo "Sending payload: $JSON_PAYLOAD" # Debugging line
 
           curl -X POST \
             -H "Content-Type: application/json" \
