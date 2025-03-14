@@ -8,9 +8,6 @@ function GradientCustomizer() {
   const [direction, setDirection] = useState(
     localStorage.getItem('gradientDirection') || 'to right'
   );
-  const [textColor, setTextColor] = useState(
-    localStorage.getItem('textColor') || 'black'
-  );
   const [showCustomizer, setShowCustomizer] = useState(false);
 
   const directions = [
@@ -27,13 +24,11 @@ function GradientCustomizer() {
   useEffect(() => {
     const gradient = `linear-gradient(${direction}, ${gradientColors.color1}, ${gradientColors.color2})`;
     document.documentElement.style.setProperty('--page-gradient', gradient);
-    document.documentElement.style.setProperty('--text-color', textColor);
     
     localStorage.setItem('gradientColor1', gradientColors.color1);
     localStorage.setItem('gradientColor2', gradientColors.color2);
     localStorage.setItem('gradientDirection', direction);
-    localStorage.setItem('textColor', textColor);
-  }, [gradientColors, direction, textColor]);
+  }, [gradientColors, direction]);
 
   useEffect(() => {
     const handleGradientToggle = () => {
@@ -101,25 +96,6 @@ function GradientCustomizer() {
                       {dir.label}
                     </button>
                   ))}
-                </div>
-              </div>
-              <div className="text-color-picker">
-                <label>Text Color:</label>
-                <div className="text-color-buttons">
-                  <button
-                    className={`text-color-button ${textColor === 'black' ? 'active' : ''}`}
-                    onClick={() => setTextColor('black')}
-                    style={{ color: 'black' }}
-                  >
-                    Black Text
-                  </button>
-                  <button
-                    className={`text-color-button ${textColor === 'white' ? 'active' : ''}`}
-                    onClick={() => setTextColor('white')}
-                    style={{ color: 'white' }}
-                  >
-                    White Text
-                  </button>
                 </div>
               </div>
               <button
