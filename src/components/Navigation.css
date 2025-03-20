@@ -40,6 +40,7 @@
   height: 2px;
   background: var(--text-color);
   transition: all 0.3s ease;
+  margin: 0 auto; /* Center horizontally */
 }
 
 .menu-icon::before,
@@ -50,6 +51,7 @@
   height: 2px;
   background: var(--text-color);
   transition: all 0.3s ease;
+  left: 0; /* Ensure horizontal alignment */
 }
 
 .menu-icon::before {
