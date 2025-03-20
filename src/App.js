@@ -7,13 +7,13 @@ import Content from './components/Content';
 import YouTube from './components/YouTube';
 import Twitch from './components/Twitch';
 import Bluesky from './components/Bluesky';
-import HomeButton from './components/HomeButton';
 import NotFound from './components/NotFound';
 import StartPage from './components/StartPage';
 import GitHubCorner from './components/GitHubCorner';
 import ThemeToggle from './components/ThemeToggle';
 import GradientCustomizer from './components/GradientCustomizer';
 import ScrollToTop from './components/ScrollToTop';
+import Navigation from './components/Navigation';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 
@@ -35,7 +35,7 @@ function App() {
         </Routes>
         <ScrollToTop />
         <SpeedInsights />
-        <HomeButton />
+        <Navigation />
         <GitHubCorner />
         <ThemeToggle />
         <GradientCustomizer />
