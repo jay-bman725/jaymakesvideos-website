@@ -26,8 +26,8 @@ jobs:
           COMMIT_TITLE=$(echo "$COMMIT_TITLE" | sed 's/"/\\"/g')
           COMMIT_DESCRIPTION=$(echo "$COMMIT_DESCRIPTION" | sed 's/"/\\"/g')
 
-          # Construct JSON payload manually
-          JSON_PAYLOAD="{\"content\": \"@everyone New commit pushed: ${COMMIT_URL}\\nCheck out the website: <https://jaymakesvideos.xyz>\\n\\n\`\`\`${COMMIT_TITLE}\\n\\n${COMMIT_DESCRIPTION}\`\`\`\"}"
+          # Construct JSON payload manually with role mention
+          JSON_PAYLOAD="{\"content\": \"<@&1353215543171354654> New commit pushed: ${COMMIT_URL}\\nCheck out the website: <https://jaymakesvideos.xyz>\\n\\n\`\`\`${COMMIT_TITLE}\\n\\n${COMMIT_DESCRIPTION}\`\`\`\"}"
 
           echo "Sending payload: $JSON_PAYLOAD" # Debugging line
 
