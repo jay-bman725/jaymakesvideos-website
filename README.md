@@ -22,7 +22,13 @@ Custom gradients can only be modified while using the default theme. If you have
 
 ## Browser Requirements
 
-This website requires **JavaScript** to function properly. Please ensure that JavaScript is enabled in your browser settings for the best experience. I reccomend Chrome and any Chromium based browser, but any browser **should** work
+This website is designed to work with and without JavaScript enabled. While JavaScript is **highly recommended** for the best interactive experience, all essential content remains accessible without it.
+
+### Features
+- **Without JavaScript**: Access to all content links, social media, and basic information
+- **With JavaScript**: Full interactive experience including theme customization, gradient effects, and smooth navigation
+
+Any modern browser will work, with Chrome and Chromium-based browsers providing the best experience.
 
 ---
 
