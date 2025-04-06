@@ -191,6 +191,20 @@ body {
   }
 }
 
+@keyframes spin360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin360 1s ease-in-out;
+}
+
+
 .platform-button {
   background: var(--button-bg);
   color: var(--text-color);
