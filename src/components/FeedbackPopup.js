@@ -5,7 +5,7 @@ const FeedbackPopup = ({ onClose }) => {
     <div className="feedback-overlay">
       <div className="feedback-modal">
         <h2>Help Us Improve!</h2>
-        <p>We noticed you've visited us quite a few times - thank you! Would you mind giving us some feedback?</p>
+        <p>We noticed you've visited us quite a few times, thank you! Would you mind giving us some feedback?</p>
         <div className="feedback-buttons">
           <a 
             href="https://forms.gle/H2cYE35G7mxZnJt98" 
