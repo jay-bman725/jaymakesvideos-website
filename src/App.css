@@ -598,3 +598,68 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 .github-corner:hover img {
 opacity: 1;
 }
+
+.feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.feedback-modal {
+  background: var(--container-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 8px 32px var(--box-shadow);
+  border: 1px solid var(--container-border);
+  animation: dropdownFade 0.3s ease;
+}
+
+.feedback-modal h2 {
+  margin-bottom: 1rem;
+}
+
+.feedback-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.feedback-button {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.feedback-button:hover {
+  transform: translateY(-2px);
+  background: var(--button-hover-bg);
+}
+
+.feedback-button.primary {
+  background: #0070f3;
+  color: white;
+  border-color: #0070f3;
+}
+
+.feedback-button.primary:hover {
+  background: #0051d4;
+  border-color: #0051d4;
+}

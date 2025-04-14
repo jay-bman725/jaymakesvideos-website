@@ -15,9 +15,48 @@ import ThemeToggle from './components/ThemeToggle';
 import GradientCustomizer from './components/GradientCustomizer';
 import ScrollToTop from './components/ScrollToTop';
 import { SpeedInsights } from "@vercel/speed-insights/react";
-
+import Cookies from 'js-cookie';
+import { useEffect, useState } from 'react';
+import FeedbackPopup from './components/FeedbackPopup';
 
 function App() {
+  const [showFeedback, setShowFeedback] = useState(false);
+
+  useEffect(() => {
+    const visits = parseInt(Cookies.get('visit_count') || '0');
+    const lastFeedback = parseInt(Cookies.get('last_feedback') || '0');
+    const feedbackDenied = parseInt(Cookies.get('feedback_denied') || '0');
+    
+    const newCount = visits + 1;
+    Cookies.set('visit_count', newCount, { expires: 365 });
+
+    if (lastFeedback > 0) {
+      // After giving feedback, show again at 200, 400, etc visits
+      if (newCount >= lastFeedback + 200) {
+        setShowFeedback(true);
+      }
+    } else if (feedbackDenied > 0) {
+      // If previously denied, show at next 10th interval
+      if (newCount >= (Math.floor(feedbackDenied / 10) + 1) * 10) {
+        setShowFeedback(true);
+      }
+    } else if (newCount === 10) {
+      // First time showing feedback
+      setShowFeedback(true);
+    }
+  }, []);
+
+  const handleCloseFeedback = (giveFeedback) => {
+    setShowFeedback(false);
+    const visits = parseInt(Cookies.get('visit_count') || '0');
+    
+    if (giveFeedback) {
+      Cookies.set('last_feedback', visits, { expires: 365 });
+      Cookies.remove('feedback_denied');
+    } else {
+      Cookies.set('feedback_denied', visits, { expires: 365 });
+    }
+  };
 
   return (
     <Router>
@@ -40,6 +79,7 @@ function App() {
         <GitHubCorner />
         <ThemeToggle />
         <GradientCustomizer />
+        {showFeedback && <FeedbackPopup onClose={handleCloseFeedback} />}
       </div>
     </Router>
   );
