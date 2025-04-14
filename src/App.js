@@ -26,6 +26,11 @@ function App() {
     const visits = parseInt(Cookies.get('visit_count') || '0');
     const lastFeedback = parseInt(Cookies.get('last_feedback') || '0');
     const feedbackDenied = parseInt(Cookies.get('feedback_denied') || '0');
+    const feedbackNever = Cookies.get('feedback_never');
+    
+    if (feedbackNever === 'true') {
+      return;
+    }
     
     const newCount = visits + 1;
     Cookies.set('visit_count', newCount, { expires: 365 });
@@ -50,7 +55,9 @@ function App() {
     setShowFeedback(false);
     const visits = parseInt(Cookies.get('visit_count') || '0');
     
-    if (giveFeedback) {
+    if (giveFeedback === 'never') {
+      Cookies.set('feedback_never', 'true', { expires: 3650 }); // Set for 10 years
+    } else if (giveFeedback) {
       Cookies.set('last_feedback', visits, { expires: 365 });
       Cookies.remove('feedback_denied');
     } else {

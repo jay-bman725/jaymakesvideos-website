@@ -663,3 +663,9 @@ opacity: 1;
   background: #0051d4;
   border-color: #0051d4;
 }
+
+.slim-button {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
