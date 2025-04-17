@@ -9,7 +9,6 @@ import Twitch from './components/Twitch';
 import Bluesky from './components/Bluesky';
 import HomeButton from './components/HomeButton';
 import NotFound from './components/NotFound';
-import StartPage from './components/StartPage';
 import GitHubCorner from './components/GitHubCorner';
 import ThemeToggle from './components/ThemeToggle';
 import GradientCustomizer from './components/GradientCustomizer';
@@ -70,7 +69,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/homepage" element={<StartPage />} />
           <Route path="/content" element={<Content />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/discord" element={<Discord />} />

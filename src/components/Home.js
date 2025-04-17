@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import welcomeMessages from '../assets/homepage-welcome.json';
+import welcomeMessages from '../assets/welcome.json';
 import Cookies from 'js-cookie';
 
 function Home() {
