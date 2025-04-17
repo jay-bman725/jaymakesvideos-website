@@ -61,6 +61,12 @@ function Home() {
           Follow My Bluesky
         </button>
         <button 
+          className="nav-button"
+          onClick={() => navigate('/sitemap')}
+        >
+          Site Map
+        </button>
+        <button 
           className="nav-button theme-btn"
           onClick={handleThemeToggle}
         >

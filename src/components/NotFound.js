@@ -70,6 +70,12 @@ function NotFound() {
             Return to Homepage
           </button>
           <button 
+            className="platform-button"
+            onClick={() => navigate('/sitemap')}
+          >
+            Site Map
+          </button>
+          <button 
             className="platform-button secondary"
             onClick={openGitHubIssue}
           >
