@@ -3,6 +3,9 @@ import Cookies from 'js-cookie';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
+  // Console log message about default theme
+  console.log('Developer note: You can switch to the default theme by running: document.cookie = "theme=default" in the console and refreshing the page');
+  
   const [theme, setTheme] = useState(Cookies.get('theme') || 'default');
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -117,24 +120,6 @@ const ThemeToggle = () => {
               >
                 Light Mode
               </button>
-              <div 
-                className="theme-button-container"
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
-              >
-                <button
-                  className="theme-button default"
-                  onClick={() => handleThemeChange('default')}
-                  data-active={theme === 'default'}
-                >
-                  Default Theme
-                </button>
-                {showTooltip && (
-                  <div className="theme-tooltip">
-                    Select the default theme to customize the website theme!
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         </div>

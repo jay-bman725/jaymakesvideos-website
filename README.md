@@ -8,7 +8,13 @@ Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub f
 
 ---
 ## Website Theme Customization and Default Theme
-Website theme customization can only be modified while using the default theme. If you have a different theme enabled, you will need to switch back to the default theme in order to customize website theme.
+Website theme customization can only be modified while using the default theme. While the default theme is not available in the theme selector, developers and advanced users can access it by:
+
+1. Opening your browser's developer console (F12 or Ctrl+Shift+I)
+2. Entering this command: `document.cookie = "theme=default"`
+3. Refreshing the page
+
+Once on the default theme, you can use the theme customizer to create your own color scheme.
 
 ---
 
