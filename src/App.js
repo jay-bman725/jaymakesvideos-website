@@ -11,7 +11,7 @@ import HomeButton from './components/HomeButton';
 import NotFound from './components/NotFound';
 import GitHubCorner from './components/GitHubCorner';
 import ThemeToggle from './components/ThemeToggle';
-import GradientCustomizer from './components/GradientCustomizer';
+import ThemeCustomizer from './components/ThemeCustomizer';
 import ScrollToTop from './components/ScrollToTop';
 import SiteMap from './components/SiteMap';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -85,7 +85,7 @@ function App() {
         <HomeButton />
         <GitHubCorner />
         <ThemeToggle />
-        <GradientCustomizer />
+        <ThemeCustomizer />
         {showFeedback && <FeedbackPopup onClose={handleCloseFeedback} />}
       </div>
     </Router>

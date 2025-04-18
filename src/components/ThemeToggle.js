@@ -12,10 +12,26 @@ const ThemeToggle = () => {
   const loadThemeFile = async (themeName) => {
     try {
       if (themeName !== 'default') {
+        // If switching from default theme, remove custom gradient/text settings
+        if (localStorage.getItem('currentTheme') === 'default') {
+          // Reset to default styles when switching from default theme with customizations
+          document.documentElement.style.removeProperty('--page-gradient');
+          document.documentElement.style.removeProperty('--text-color');
+        }
         await import(`../themes/${themeName}.css`);
         console.log(`Theme '${themeName}' loaded successfully`);
       } else {
-        console.log('Using default theme from App.css');
+        // When switching to default, apply any saved custom settings
+        const gradient = localStorage.getItem('gradientDirection')
+          ? `linear-gradient(${localStorage.getItem('gradientDirection')}, ${localStorage.getItem('gradientColor1') || '#3498db'}, ${localStorage.getItem('gradientColor2') || '#2ecc71'})`
+          : 'linear-gradient(to right, #3498db, #2ecc71)';
+        
+        document.documentElement.style.setProperty('--page-gradient', gradient);
+        
+        const savedTextColor = localStorage.getItem('textColor') || '#333333';
+        document.documentElement.style.setProperty('--text-color', savedTextColor);
+        
+        console.log('Using default theme from App.css with custom settings');
       }
       setShowErrorModal(false);
       setFailedTheme(null);
@@ -42,6 +58,11 @@ const ThemeToggle = () => {
     Cookies.set('theme', newTheme, { expires: 365 });
     loadThemeFile(newTheme);
     setShowModal(false);
+    
+    // Dispatch theme change event for other components
+    const themeChangeEvent = new Event('theme-change');
+    window.dispatchEvent(themeChangeEvent);
+    
     window.location.reload();
   };
 
@@ -54,6 +75,10 @@ const ThemeToggle = () => {
     setTheme(defaultTheme);
     Cookies.set('theme', defaultTheme, { expires: 365 });
     setShowErrorModal(false);
+    
+    // Dispatch theme change event for other components
+    const themeChangeEvent = new Event('theme-change');
+    window.dispatchEvent(themeChangeEvent);
   };
 
   const handleChooseAnother = () => {
@@ -106,7 +131,7 @@ const ThemeToggle = () => {
                 </button>
                 {showTooltip && (
                   <div className="theme-tooltip">
-                    Select the default theme to customize the website gradient colors!
+                    Select the default theme to customize the website theme!
                   </div>
                 )}
               </div>

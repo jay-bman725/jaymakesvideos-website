@@ -1,5 +1,5 @@
 > ⚠️ **Beta Notice:**  
-> The theme switching feature, custom gradients, and mobile support are currently in beta. If you experience any issues, please report them by opening a GitHub issue.
+> The theme switching feature, website theme customization, and mobile support are currently in beta. If you experience any issues, please report them by opening a GitHub issue.
 
 
 # jaymakesvideos-website
@@ -7,8 +7,8 @@
 Welcome to **jaymakesvideos.xyz** – my personal website and the ultimate hub for all things related to my online presence. Here, you'll find links to my social media profiles, a little bit about me, and how you can get in touch. Feel free to explore and connect!
 
 ---
-## Custom Gradients and Default Theme
-Custom gradients can only be modified while using the default theme. If you have a different theme enabled, you will need to switch back to the default theme in order to customize gradients.
+## Website Theme Customization and Default Theme
+Website theme customization can only be modified while using the default theme. If you have a different theme enabled, you will need to switch back to the default theme in order to customize website theme.
 
 ---
 
@@ -26,7 +26,7 @@ This website is designed to work with and without JavaScript enabled. While Java
 
 ### Features
 - **Without JavaScript**: Access to all content links, social media, and basic information
-- **With JavaScript**: Full interactive experience including theme customization, gradient effects, and smooth navigation
+- **With JavaScript**: Full interactive experience including theme customization, theme effects, and smooth navigation
 
 Any modern browser will work, with Chrome and Chromium-based browsers providing the best experience.
 

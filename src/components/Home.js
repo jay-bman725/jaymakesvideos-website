@@ -31,8 +31,8 @@ function Home() {
     window.dispatchEvent(event);
   };
 
-  const handleGradientToggle = () => {
-    const event = new Event('gradient-toggle');
+  const handleThemeCustomize = () => {
+    const event = new Event('theme-customize');
     window.dispatchEvent(event);
   };
 
@@ -74,10 +74,10 @@ function Home() {
         </button>
         {isDefaultTheme && (
           <button 
-            className="nav-button gradient-btn"
-            onClick={handleGradientToggle}
+            className="nav-button theme-btn"
+            onClick={handleThemeCustomize}
           >
-            Customize Gradient
+            Customize Website Theme
           </button>
         )}
       </div>
