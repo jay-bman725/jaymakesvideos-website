@@ -21,7 +21,7 @@ function Content() {
     { name: 'YouTube Channel', path: '/youtube', icon: '🎥' },
     { name: 'Latest Videos', path: '/videos', icon: '📺' },
     { name: 'Twitch Channel', path: '/twitch', icon: '🎮' },
-
+    { name: 'Bluesky', path: '/bsky', icon: '🦋' },
   ];
 
   return (

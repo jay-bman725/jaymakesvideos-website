@@ -55,10 +55,10 @@ function Home() {
           Join Discord
         </button>
         <button 
-          className="nav-button discord-btn"
-          onClick={() => navigate('/bsky')}
+          className="nav-button"
+          onClick={() => navigate('/about')}
         >
-          Follow My Bluesky
+          About Me
         </button>
         <button 
           className="nav-button"

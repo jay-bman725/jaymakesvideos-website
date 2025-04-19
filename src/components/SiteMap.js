@@ -42,6 +42,11 @@ function SiteMap() {
       description: 'Follow me on Bluesky for updates and news' 
     },
     { 
+      path: '/about', 
+      name: 'About Me', 
+      description: 'Learn more about who I am and what I do' 
+    },
+    { 
       path: '/sitemap', 
       name: 'Site Map', 
       description: 'This page - overview of all available pages'

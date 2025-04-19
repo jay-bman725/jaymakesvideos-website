@@ -14,6 +14,7 @@ import ThemeToggle from './components/ThemeToggle';
 import ThemeCustomizer from './components/ThemeCustomizer';
 import ScrollToTop from './components/ScrollToTop';
 import SiteMap from './components/SiteMap';
+import About from './components/About';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
@@ -77,6 +78,7 @@ function App() {
           <Route path="/twitch" element={<Twitch />} />
           <Route path="/bsky" element={<Bluesky />} />
           <Route path="/sitemap" element={<SiteMap />} />
+          <Route path="/about" element={<About />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to={`/404?invalid_url=${encodeURIComponent(window.location.pathname)}`} replace />} />
         </Routes>
