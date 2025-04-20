@@ -1,28 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Discord({ showConfirmation }) {
-  const DISCORD_INVITE_URL = "https://discord.gg/MPJCaDHpTp";
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInviteGeneration = async (userId) => {
+    try {
+      setIsLoading(true);
+      setError('');
+      
+      const response = await fetch(`http://localhost:4000/invite/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include'
+      });
+
+      // Handle non-JSON responses (like CORS errors)
+      if (!response.ok) {
+        if (response.status === 0) {
+          throw new Error('Could not connect to the invite service. CORS error - please check if the server is running and CORS is enabled.');
+        }
+        const data = await response.json().catch(() => ({ error: 'unknown' }));
+        switch (data.error) {
+          case 'invalid_format':
+            throw new Error('Invalid user ID format. Please enter a valid Discord user ID.');
+          case 'invalid_user':
+            throw new Error('The provided user ID is not valid.');
+          case 'invite_limit_reached':
+            throw new Error('You have reached the maximum number of invite links.');
+          default:
+            throw new Error('An error occurred while generating the invite link.');
+        }
+      }
+
+      const data = await response.json();
+
+      if (data.is_banned) {
+        throw new Error('Sorry, you are not allowed to join this server.');
+      }
+
+      if (!data.invite_link) {
+        throw new Error('Could not generate an invite link at this time.');
+      }
+
+      return data.invite_link;
+    } catch (error) {
+      if (error.message === 'Failed to fetch') {
+        throw new Error('Could not connect to the invite service. Please check if the server is running.');
+      }
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleJoinDiscord = () => {
+    let userId = '';
+    let generatedInviteLink = '';
+
     showConfirmation(
       "Do you confirm that you understand and accept our Discord rules?",
-      // onConfirm callback - show second confirmation
+      // onConfirm callback - show user ID input
       () => {
         showConfirmation(
-          "You will now be redirected to Discord. Would you like to proceed?",
-          // onConfirm callback - redirect to Discord
-          () => {
-            window.open(DISCORD_INVITE_URL, '_blank', 'noopener,noreferrer');
+          "Please enter your Discord User ID:",
+          // onConfirm callback - generate invite
+          async () => {
+            try {
+              if (!userId.trim()) {
+                setError('Please enter your Discord User ID');
+                return;
+              }
+
+              generatedInviteLink = await handleInviteGeneration(userId.trim());
+              
+              if (generatedInviteLink) {
+                showConfirmation(
+                  "You will now be redirected to Discord. Would you like to proceed?",
+                  // onConfirm callback - redirect to Discord
+                  () => {
+                    // Use the actual invite link from the API
+                    window.open(`https://discord.gg/${generatedInviteLink}`, '_blank', 'noopener,noreferrer');
+                  },
+                  // onCancel callback - do nothing, stay on current page
+                  () => {}
+                );
+              }
+            } catch (error) {
+              setError(error.message);
+              // Don't refresh the page, just show the error
+            }
           },
-          // onCancel callback - stay on page
+          // onCancel callback - just clear the error if any
           () => {
-            window.location.href = '/discord';
+            setError('');
+          },
+          "Continue",
+          true,
+          userId,
+          (value) => {
+            userId = value;
           }
         );
       },
-      // onCancel callback - stay on page
+      // onCancel callback - just clear the error if any
       () => {
-        window.location.href = '/discord';
+        setError('');
       }
     );
   };
@@ -137,11 +224,13 @@ function Discord({ showConfirmation }) {
       </div>
 
       <div className="discord-buttons">
+        {error && <p className="error-message">{error}</p>}
         <button 
           onClick={handleJoinDiscord}
           className="join-button"
+          disabled={isLoading}
         >
-          Join Discord Server
+          {isLoading ? 'Generating Invite...' : 'Join Discord Server'}
         </button>
       </div>
     </div>

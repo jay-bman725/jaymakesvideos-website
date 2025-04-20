@@ -198,6 +198,41 @@ body {
   margin-top: 2rem;
 }
 
+.user-id-input {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+
+.discord-input {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border: 1px solid var(--button-border);
+  border-radius: var(--border-radius-sm);
+  background: var(--button-bg);
+  color: var(--text-color);
+  transition: var(--transition-medium);
+}
+
+.discord-input:focus {
+  outline: none;
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
 .home-button-persistent {
   background: var(--button-bg);
   color: var(--text-color);
@@ -556,6 +591,14 @@ p {
   .dropdown-button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
+  }
+
+  .user-id-input {
+    max-width: 100%;
+  }
+
+  .error-message {
+    max-width: 100%;
   }
 }
 
@@ -1509,4 +1552,13 @@ p {
   .platform-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.modal-input-container {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.modal-input-container .discord-input {
+  max-width: 100%;
 }
