@@ -9,7 +9,7 @@ function Discord({ showConfirmation }) {
       setIsLoading(true);
       setError('');
       
-      const response = await fetch(`http://localhost:4000/invite/${userId}`, {
+      const response = await fetch(`http://api.jaymakesvideos.xyz/invite/${userId}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
