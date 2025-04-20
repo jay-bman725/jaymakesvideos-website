@@ -19,9 +19,14 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import FeedbackPopup from './components/FeedbackPopup';
+import ConfirmationModal from './components/ConfirmationModal';
 
 function App() {
   const [showFeedback, setShowFeedback] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [confirmationCallback, setConfirmationCallback] = useState(null);
+  const [cancelCallback, setCancelCallback] = useState(null);
 
   useEffect(() => {
     const visits = parseInt(Cookies.get('visit_count') || '0');
@@ -66,6 +71,30 @@ function App() {
     }
   };
 
+  // Method to show confirmation dialog from anywhere in the app
+  const showConfirmationDialog = (message, onConfirm, onCancel) => {
+    setConfirmationMessage(message);
+    setConfirmationCallback(() => onConfirm);
+    setCancelCallback(() => onCancel);
+    setShowConfirmation(true);
+  };
+
+  // Handle confirmation
+  const handleConfirm = () => {
+    setShowConfirmation(false);
+    if (confirmationCallback) {
+      confirmationCallback();
+    }
+  };
+
+  // Handle cancellation
+  const handleCancel = () => {
+    setShowConfirmation(false);
+    if (cancelCallback) {
+      cancelCallback();
+    }
+  };
+
   return (
     <Router>
       <div className="App">
@@ -73,7 +102,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/content" element={<Content />} />
           <Route path="/videos" element={<Videos />} />
-          <Route path="/discord" element={<Discord />} />
+          <Route 
+            path="/discord" 
+            element={
+              <Discord 
+                showConfirmation={showConfirmationDialog}
+              />
+            } 
+          />
           <Route path="/youtube" element={<YouTube />} />
           <Route path="/twitch" element={<Twitch />} />
           <Route path="/bsky" element={<Bluesky />} />
@@ -89,6 +125,13 @@ function App() {
         <ThemeToggle />
         <ThemeCustomizer />
         {showFeedback && <FeedbackPopup onClose={handleCloseFeedback} />}
+        <ConfirmationModal
+          isOpen={showConfirmation}
+          message={confirmationMessage}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          confirmText={confirmationMessage.includes('redirected to Discord') ? 'Yes' : 'I Understand'}
+        />
       </div>
     </Router>
   );

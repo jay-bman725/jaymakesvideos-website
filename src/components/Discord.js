@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 
-function Discord() {
-  const [rulesConfirmed, setRulesConfirmed] = useState(false);
+function Discord({ showConfirmation }) {
   const [showError, setShowError] = useState(false);
+  const DISCORD_INVITE_URL = "https://discord.gg/MPJCaDHpTp";
 
-  const handleConfirmRules = () => {
-    const userConfirmed = window.confirm('Do you confirm that you understand and accept our Discord rules?');
-    if (userConfirmed) {
-      setRulesConfirmed(true);
-      setShowError(false);
-    } else {
-      window.location.href = '/discord';
-    }
-  };
-
-  const handleJoinAttempt = () => {
-    if (!rulesConfirmed) {
-      setShowError(true);
-      return;
-    }
+  const handleJoinDiscord = () => {
+    showConfirmation(
+      "Do you confirm that you understand and accept our Discord rules?",
+      // onConfirm callback - show second confirmation
+      () => {
+        showConfirmation(
+          "You will now be redirected to Discord. Would you like to proceed?",
+          // onConfirm callback - redirect to Discord
+          () => {
+            window.open(DISCORD_INVITE_URL, '_blank', 'noopener,noreferrer');
+          },
+          // onCancel callback - stay on page
+          () => {
+            window.location.href = '/discord';
+          }
+        );
+      },
+      // onCancel callback - stay on page
+      () => {
+        window.location.href = '/discord';
+      }
+    );
   };
 
   const Rules = [
@@ -131,23 +138,12 @@ function Discord() {
       </div>
 
       <div className="discord-buttons">
-        {rulesConfirmed ? (
-          <a 
-            href="https://discord.gg/98d9dyrYrt"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="join-button"
-          >
-            Join the Discord Server
-          </a>
-        ) : (
-          <button 
-            onClick={handleConfirmRules}
-            className="join-button"
-          >
-            I Understand and Accept the Rules
-          </button>
-        )}
+        <button 
+          onClick={handleJoinDiscord}
+          className="join-button"
+        >
+          Join Discord Server
+        </button>
         {showError && (
           <div className="error-message">
             Please read and confirm that you understand the rules before joining.
