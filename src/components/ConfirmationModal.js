@@ -44,7 +44,7 @@ function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText =
           <button 
             className="theme-button light" 
             onClick={onConfirm}
-            autoFocus={!showInput}
+            ref={confirmButtonRef}
           >
             {confirmText}
           </button>
