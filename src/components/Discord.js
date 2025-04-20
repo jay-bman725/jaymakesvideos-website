@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function Discord({ showConfirmation }) {
-  const [showError, setShowError] = useState(false);
   const DISCORD_INVITE_URL = "https://discord.gg/MPJCaDHpTp";
 
   const handleJoinDiscord = () => {
@@ -144,11 +143,6 @@ function Discord({ showConfirmation }) {
         >
           Join Discord Server
         </button>
-        {showError && (
-          <div className="error-message">
-            Please read and confirm that you understand the rules before joining.
-          </div>
-        )}
       </div>
     </div>
   );
