@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText = "I Understand" }) {
+function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText = "I Understand", showInput = false, inputValue = '', onInputChange = null }) {
   // Prevent scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -22,6 +22,17 @@ function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText =
         <h2>Confirmation Required</h2>
         <div className="feedback-buttons">
           <p>{message}</p>
+          {showInput && (
+            <div className="modal-input-container">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => onInputChange(e.target.value)}
+                className="discord-input"
+                autoFocus
+              />
+            </div>
+          )}
         </div>
         <div className="theme-buttons">
           <button 
@@ -33,7 +44,7 @@ function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText =
           <button 
             className="theme-button light" 
             onClick={onConfirm}
-            autoFocus
+            ref={confirmButtonRef}
           >
             {confirmText}
           </button>

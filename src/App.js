@@ -27,6 +27,10 @@ function App() {
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [confirmationCallback, setConfirmationCallback] = useState(null);
   const [cancelCallback, setCancelCallback] = useState(null);
+  const [confirmText, setConfirmText] = useState('I Understand');
+  const [showInput, setShowInput] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [onInputChange, setOnInputChange] = useState(null);
 
   useEffect(() => {
     const visits = parseInt(Cookies.get('visit_count') || '0');
@@ -72,10 +76,14 @@ function App() {
   };
 
   // Method to show confirmation dialog from anywhere in the app
-  const showConfirmationDialog = (message, onConfirm, onCancel) => {
+  const showConfirmationDialog = (message, onConfirm, onCancel, confirmButtonText = 'I Understand', shouldShowInput = false, initialInputValue = '', inputChangeHandler = null) => {
     setConfirmationMessage(message);
     setConfirmationCallback(() => onConfirm);
     setCancelCallback(() => onCancel);
+    setConfirmText(confirmButtonText);
+    setShowInput(shouldShowInput);
+    setInputValue(initialInputValue);
+    setOnInputChange(() => inputChangeHandler);
     setShowConfirmation(true);
   };
 
@@ -92,6 +100,14 @@ function App() {
     setShowConfirmation(false);
     if (cancelCallback) {
       cancelCallback();
+    }
+  };
+
+  // Handle input change
+  const handleInputChange = (value) => {
+    setInputValue(value);
+    if (onInputChange) {
+      onInputChange(value);
     }
   };
 
@@ -130,7 +146,10 @@ function App() {
           message={confirmationMessage}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
-          confirmText={confirmationMessage.includes('redirected to Discord') ? 'Yes' : 'I Understand'}
+          confirmText={confirmText}
+          showInput={showInput}
+          inputValue={inputValue}
+          onInputChange={handleInputChange}
         />
       </div>
     </Router>
