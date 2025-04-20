@@ -12,17 +12,15 @@ function Discord({ showConfirmation }) {
       const response = await fetch(`https://api.jaymakesvideos.xyz/invite/${userId}`, {
         method: 'GET',
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        mode: 'cors',
-        credentials: 'include'
+        mode: 'cors'
       });
 
       // Handle non-JSON responses (like CORS errors)
       if (!response.ok) {
         if (response.status === 0) {
-          throw new Error('Could not connect to the invite service. CORS error - please check if the server is running and CORS is enabled.');
+          throw new Error('Could not connect to the invite service. Please try again later.');
         }
         const data = await response.json().catch(() => ({ error: 'unknown' }));
         switch (data.error) {
@@ -50,7 +48,7 @@ function Discord({ showConfirmation }) {
       return data.invite_link;
     } catch (error) {
       if (error.message === 'Failed to fetch') {
-        throw new Error('Could not connect to the invite service. Please check if the server is running.');
+        throw new Error('Could not connect to the invite service. Please try again later.');
       }
       throw error;
     } finally {
