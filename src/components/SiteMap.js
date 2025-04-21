@@ -47,6 +47,11 @@ function SiteMap() {
       description: 'Learn more about who I am and what I do' 
     },
     { 
+      path: '/email', 
+      name: 'Email', 
+      description: 'Contact me via email' 
+    },
+    { 
       path: '/sitemap', 
       name: 'Site Map', 
       description: 'This page - overview of all available pages'

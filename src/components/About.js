@@ -8,7 +8,10 @@ function About() {
   const socialPlatforms = [
     { name: 'YouTube', path: '/youtube', description: 'Watch my latest videos and tutorials' },
     { name: 'Twitch', path: '/twitch', description: 'Join my live streams' },
-    { name: 'Discord', path: '/discord', description: 'Be part of our community' }
+    { name: 'Blue Sky', path: '/bsky', description: 'Follow me on Blue Sky' },
+    { name: 'Discord', path: '/discord', description: 'Be part of our community' },
+    { name: 'Email', path: '/email', description: 'Send me an email' },
+    { name: 'Contact Form', path: 'https://forms.gle/cNAuyqAm6gjrD6L67', description: 'Reach out via Google Forms' }
   ];
 
   return (
@@ -69,7 +72,15 @@ function About() {
               <button 
                 key={index}
                 className="platform-button"
-                onClick={() => navigate(platform.path)}
+                onClick={() => {
+                  if (platform.path.startsWith('mailto:')) {
+                    window.open(platform.path, '_blank');
+                  } else if (platform.path.startsWith('http')) {
+                    window.open(platform.path, '_blank');
+                  } else {
+                    navigate(platform.path);
+                  }
+                }}
               >
                 <h4>{platform.name}</h4>
                 <p>{platform.description}</p>
