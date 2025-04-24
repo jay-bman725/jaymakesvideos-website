@@ -26,6 +26,27 @@ Once on the default theme, you can use the theme customizer to create your own c
 
 ---
 
+## Website URLs
+
+Here's a complete list of all pages available on this website:
+
+| URL | Description |
+|-----|-------------|
+| `/` | **Home** - Main landing page with navigation to all content |
+| `/content` | **Content Hub** - Browse all my content platforms in one place |
+| `/videos` | **Videos** - Collection of my video content |
+| `/discord` | **Discord Community** - Join our Discord server to connect with the community |
+| `/youtube` | **YouTube Channel** - Watch my latest videos on YouTube |
+| `/twitch` | **Twitch Channel** - Follow my live streams on Twitch |
+| `/bsky` | **Bluesky** - Follow me on Bluesky for updates and news |
+| `/about` | **About Me** - Learn more about who I am and what I do |
+| `/email` | **Email** - Contact me via email |
+| `/sitemap` | **Site Map** - Overview of all available pages |
+
+You can view the complete sitemap at: [https://jaymakesvideos.xyz/sitemap](https://jaymakesvideos.xyz/sitemap)
+
+---
+
 ## Browser Requirements
 
 This website is designed to work with and without JavaScript enabled. While JavaScript is **highly recommended** for the best interactive experience, all essential content remains accessible without it.
