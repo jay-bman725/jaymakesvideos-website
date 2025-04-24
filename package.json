@@ -7,8 +7,6 @@
     "cra-template": "1.2.0",
     "js-cookie": "^3.0.5",
     "next": "^15.1.4",
-    "posthog-js": "^1.236.6",
-    "posthog-node": "^4.14.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
