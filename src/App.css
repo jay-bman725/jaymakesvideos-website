@@ -1557,8 +1557,16 @@ p {
 .modal-input-container {
   width: 100%;
   margin: 1rem 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .modal-input-container .discord-input {
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--container-border);
+  font-size: 1rem;
 }

@@ -20,20 +20,20 @@ function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText =
     <div className="theme-modal-overlay" onClick={onCancel}>
       <div className="theme-modal" onClick={e => e.stopPropagation()}>
         <h2>Confirmation Required</h2>
-        <div className="feedback-buttons">
-          <p>{message}</p>
-          {showInput && (
-            <div className="modal-input-container">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => onInputChange(e.target.value)}
-                className="discord-input"
-                autoFocus
-              />
-            </div>
-          )}
-        </div>
+        <p>{message}</p>
+        
+        {showInput && (
+          <div className="modal-input-container">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => onInputChange(e.target.value)}
+              className="discord-input"
+              autoFocus
+            />
+          </div>
+        )}
+        
         <div className="theme-buttons">
           <button 
             className="theme-button dark" 
