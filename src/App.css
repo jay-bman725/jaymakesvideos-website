@@ -422,7 +422,23 @@ p {
   width: 100%;
 }
 
+.videos-container {
+  max-width: 80% !important;
+  padding: 3rem;
+}
+
+.videos-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
 .video-item {
+  width: 100%;
+  max-width: 900px;
   background: var(--container-bg);
   border-radius: var(--border-radius-md);
   padding: 1.5rem;

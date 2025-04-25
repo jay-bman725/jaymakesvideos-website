@@ -6,9 +6,9 @@ function Videos() {
   ];
 
   return (
-    <div className="page-container">
+    <div className="page-container videos-container">
       <h1>Videos</h1>
-      <div className="video-grid">
+      <div className="videos-content">
         {videos.map((videoId, index) => (
           <div key={index} className="video-item">
             <iframe
