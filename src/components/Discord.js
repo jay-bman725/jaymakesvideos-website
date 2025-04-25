@@ -30,6 +30,8 @@ function Discord({ showConfirmation }) {
             throw new Error('The provided user ID is not valid.');
           case 'invite_limit_reached':
             throw new Error('You have reached the maximum number of invite links.');
+          case 'rate_limited':
+            throw new Error('Your IP is being rate limited. Please try again in 24 hours.');
           default:
             throw new Error('An error occurred while generating the invite link.');
         }
