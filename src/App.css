@@ -564,6 +564,20 @@ p {
     border-radius: var(--border-radius-md);
   }
 
+  .videos-container {
+    max-width: 95% !important;
+    padding: 1rem;
+  }
+
+  .videos-content {
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .video-item {
+    padding: 0.8rem;
+  }
+
   h1 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
