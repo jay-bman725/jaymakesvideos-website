@@ -1,21 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 function Discord({ showConfirmation }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef(null);
 
   const handleInviteGeneration = async (userId) => {
     try {
       setIsLoading(true);
       setError('');
       
+      if (!captchaToken) {
+        throw new Error('Please complete the captcha verification');
+      }
+      
       const response = await fetch(`https://api.jaymakesvideos.xyz/invite/${userId}`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        mode: 'cors'
+        mode: 'cors',
+        body: JSON.stringify({
+          captcha_token: captchaToken
+        })
       });
+
+      // Reset captcha after use
+      setCaptchaToken('');
+      captchaRef.current?.resetCaptcha();
 
       // Handle non-JSON responses (like CORS errors)
       if (!response.ok) {
@@ -32,6 +47,8 @@ function Discord({ showConfirmation }) {
             throw new Error('You have reached the maximum number of invite links.');
           case 'rate_limited':
             throw new Error('Your IP is being rate limited. Please try again in 24 hours.');
+          case 'invalid_captcha':
+            throw new Error('Captcha verification failed. Please try again.');
           default:
             throw new Error('An error occurred while generating the invite link.');
         }
@@ -76,6 +93,11 @@ function Discord({ showConfirmation }) {
                 return;
               }
 
+              if (!captchaToken) {
+                setError('Please complete the captcha verification');
+                return;
+              }
+
               generatedInviteLink = await handleInviteGeneration(userId.trim());
               
               if (generatedInviteLink) {
@@ -83,7 +105,6 @@ function Discord({ showConfirmation }) {
                   "You will now be redirected to Discord. Would you like to proceed?",
                   // onConfirm callback - redirect to Discord
                   () => {
-                    // Use the actual invite link from the API
                     window.open(`https://discord.gg/${generatedInviteLink}`, '_blank', 'noopener,noreferrer');
                   },
                   // onCancel callback - do nothing, stay on current page
@@ -112,6 +133,20 @@ function Discord({ showConfirmation }) {
         setError('');
       }
     );
+  };
+
+  const handleCaptchaVerify = (token) => {
+    setCaptchaToken(token);
+    setError(''); // Clear any previous errors
+  };
+
+  const handleCaptchaError = () => {
+    setError('Captcha verification failed. Please try again.');
+    setCaptchaToken('');
+  };
+
+  const handleCaptchaExpire = () => {
+    setCaptchaToken('');
   };
 
   const Rules = [
@@ -225,10 +260,19 @@ function Discord({ showConfirmation }) {
 
       <div className="discord-buttons">
         {error && <p className="error-message">{error}</p>}
+        <div className="captcha-container">
+          <HCaptcha
+            sitekey={process.env.REACT_APP_HCAPTCHA_SITE_KEY}
+            onVerify={handleCaptchaVerify}
+            onError={handleCaptchaError}
+            onExpire={handleCaptchaExpire}
+            ref={captchaRef}
+          />
+        </div>
         <button 
           onClick={handleJoinDiscord}
           className="join-button"
-          disabled={isLoading}
+          disabled={isLoading || !captchaToken}
         >
           {isLoading ? 'Generating Invite...' : 'Join Discord Server'}
         </button>

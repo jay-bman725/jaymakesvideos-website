@@ -1600,3 +1600,21 @@ p {
   border: 1px solid var(--container-border);
   font-size: 1rem;
 }
+
+.captcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  min-height: 78px; /* Standard hCaptcha height */
+}
+
+.captcha-container iframe {
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 2px 8px var(--box-shadow);
+  transition: var(--transition-medium);
+}
+
+.captcha-container iframe:hover {
+  box-shadow: 0 4px 12px var(--box-shadow-hover), 0 0 10px var(--accent-glow);
+  transform: translateY(-2px);
+}
