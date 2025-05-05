@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Videos from './components/Videos';
 import Discord from './components/Discord';
@@ -16,14 +16,18 @@ import ScrollToTop from './components/ScrollToTop';
 import SiteMap from './components/SiteMap';
 import About from './components/About';
 import Email from './components/Email';
+import Privacy from './components/Privacy';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import FeedbackPopup from './components/FeedbackPopup';
 import ConfirmationModal from './components/ConfirmationModal';
 
-function App() {
+// Helper component to watch for route changes and hide privacy consent on privacy page
+function AppContent() {
+  const location = useLocation();
   const [showFeedback, setShowFeedback] = useState(false);
+  const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [confirmationCallback, setConfirmationCallback] = useState(null);
@@ -34,6 +38,16 @@ function App() {
   const [onInputChange, setOnInputChange] = useState(null);
 
   useEffect(() => {
+    // Check for privacy policy consent
+    const privacyConsent = Cookies.get('privacy_consent');
+    if (!privacyConsent) {
+      // Don't show the privacy consent if we're on the privacy page
+      const isPrivacyPage = location.pathname === '/privacy';
+      if (!isPrivacyPage) {
+        setShowPrivacyConsent(true);
+      }
+    }
+
     const visits = parseInt(Cookies.get('visit_count') || '0');
     const lastFeedback = parseInt(Cookies.get('last_feedback') || '0');
     const feedbackDenied = parseInt(Cookies.get('feedback_denied') || '0');
@@ -60,7 +74,14 @@ function App() {
       // First time showing feedback
       setShowFeedback(true);
     }
-  }, []);
+  }, [location]);
+
+  // Hide privacy consent if user navigates to privacy page
+  useEffect(() => {
+    if (location.pathname === '/privacy') {
+      setShowPrivacyConsent(false);
+    }
+  }, [location]);
 
   const handleCloseFeedback = (giveFeedback) => {
     setShowFeedback(false);
@@ -74,6 +95,26 @@ function App() {
     } else {
       Cookies.set('feedback_denied', visits, { expires: 365 });
     }
+  };
+
+  const handlePrivacyConsent = () => {
+    showConfirmationDialog(
+      "By clicking 'I Agree', you confirm that you have read and agree to our Privacy Policy.",
+      () => {
+        // Set cookie with the specific date mentioned
+        Cookies.set('privacy_consent', 'true', { 
+          expires: 365,
+          sameSite: 'strict'
+        });
+        Cookies.set('privacy_consent_date', '5/5/25', { 
+          expires: 365,
+          sameSite: 'strict'
+        });
+        setShowPrivacyConsent(false);
+      },
+      null,
+      "I Agree"
+    );
   };
 
   // Method to show confirmation dialog from anywhere in the app
@@ -113,47 +154,70 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/content" element={<Content />} />
-          <Route path="/videos" element={<Videos />} />
-          <Route 
-            path="/discord" 
-            element={
-              <Discord 
-                showConfirmation={showConfirmationDialog}
-              />
-            } 
-          />
-          <Route path="/youtube" element={<YouTube />} />
-          <Route path="/twitch" element={<Twitch />} />
-          <Route path="/bsky" element={<Bluesky />} />
-          <Route path="/sitemap" element={<SiteMap />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/email" element={<Email />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to={`/404?invalid_url=${encodeURIComponent(window.location.pathname)}`} replace />} />
-        </Routes>
-        <ScrollToTop />
-        <SpeedInsights />
-        <HomeButton />
-        <GitHubCorner />
-        <ThemeToggle />
-        <ThemeCustomizer />
-        {showFeedback && <FeedbackPopup onClose={handleCloseFeedback} />}
-        <ConfirmationModal
-          isOpen={showConfirmation}
-          message={confirmationMessage}
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
-          confirmText={confirmText}
-          showInput={showInput}
-          inputValue={inputValue}
-          onInputChange={handleInputChange}
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/content" element={<Content />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route 
+          path="/discord" 
+          element={
+            <Discord 
+              showConfirmation={showConfirmationDialog}
+            />
+          } 
         />
-      </div>
+        <Route path="/youtube" element={<YouTube />} />
+        <Route path="/twitch" element={<Twitch />} />
+        <Route path="/bsky" element={<Bluesky />} />
+        <Route path="/sitemap" element={<SiteMap />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/email" element={<Email />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to={`/404?invalid_url=${encodeURIComponent(window.location.pathname)}`} replace />} />
+      </Routes>
+      <ScrollToTop />
+      <SpeedInsights />
+      <HomeButton />
+      <GitHubCorner />
+      <ThemeToggle />
+      <ThemeCustomizer />
+      {showFeedback && <FeedbackPopup onClose={handleCloseFeedback} />}
+      {showPrivacyConsent && (
+        <div className="theme-modal-overlay">
+          <div className="theme-modal">
+            <h2>Privacy Policy Consent</h2>
+            <p>We value your privacy. Please review our <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> which explains how we use cookies and process your data.</p>
+            <div className="theme-buttons">
+              <button 
+                className="theme-button light" 
+                onClick={handlePrivacyConsent}
+              >
+                I agree to the privacy policy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <ConfirmationModal
+        isOpen={showConfirmation}
+        message={confirmationMessage}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+        confirmText={confirmText}
+        showInput={showInput}
+        inputValue={inputValue}
+        onInputChange={handleInputChange}
+      />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
