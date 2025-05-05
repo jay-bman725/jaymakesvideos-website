@@ -52,6 +52,11 @@ function SiteMap() {
       description: 'Contact me via email' 
     },
     { 
+      path: '/privacy', 
+      name: 'Privacy Policy', 
+      description: 'Our privacy policy and data practices' 
+    },
+    { 
       path: '/sitemap', 
       name: 'Site Map', 
       description: 'This page - overview of all available pages'
