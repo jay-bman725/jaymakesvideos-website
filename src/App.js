@@ -106,7 +106,7 @@ function AppContent() {
           expires: 365,
           sameSite: 'strict'
         });
-        Cookies.set('privacy_consent_date', '5/5/25', { 
+        Cookies.set('privacy_consent_date', '5/5/2025', { 
           expires: 365,
           sameSite: 'strict'
         });
