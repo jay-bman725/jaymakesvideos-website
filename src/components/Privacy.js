@@ -83,6 +83,7 @@ function Privacy() {
           <p><a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">hCaptcha Privacy Policy</a> - For our captcha service</p>
           <p><a href='https://policies.google.com/privacy' target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> - For our AI Discord moderation</p>
           <p><a href='https://privacy.openai.com/policies' target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy</a> - For our AI Ban Appeal GPT</p>
+          <p><a href='https://posthog.com/handbook/company/security' target="_blank" rel="noopener noreferrer">PostHog Privacy Policy</a> - For our analytics and feedback collection</p>
         </div>
         
         <h2>Data Security</h2>
