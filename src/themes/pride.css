@@ -1,0 +1,669 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* LGBTQ Pride Theme - Celebrating Pride Month 🏳️‍🌈 */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+:root {
+  /* Pride flag inspired color palette */
+  --bg-gradient-start: #e60026; /* Red */
+  --bg-gradient-middle: #ff8c00; /* Orange */
+  --bg-gradient-end: #ffed00; /* Yellow */
+  --bg-gradient-fourth: #008026; /* Green */
+  --bg-gradient-fifth: #004cff; /* Blue */
+  --bg-gradient-sixth: #732982; /* Purple */
+  
+  --text-color: #ffffff;
+  --container-bg: rgba(0, 0, 0, 0.8);
+  --container-border: rgba(255, 255, 255, 0.3);
+  --button-bg: rgba(255, 255, 255, 0.15);
+  --button-border: rgba(255, 255, 255, 0.3);
+  --button-hover-bg: rgba(255, 255, 255, 0.25);
+  --box-shadow: rgba(255, 255, 255, 0.2);
+  --box-shadow-hover: rgba(255, 255, 255, 0.4);
+  --accent-glow: rgba(255, 255, 255, 0.6);
+  --border-radius-lg: 24px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 12px;
+  --transition-fast: all 0.2s ease;
+  --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --blur-effect: blur(12px);
+}
+
+body {
+  /* Beautiful rainbow gradient background */
+  background: linear-gradient(45deg, 
+    var(--bg-gradient-start) 0%, 
+    var(--bg-gradient-middle) 16.66%, 
+    var(--bg-gradient-end) 33.33%, 
+    var(--bg-gradient-fourth) 50%, 
+    var(--bg-gradient-fifth) 66.66%, 
+    var(--bg-gradient-sixth) 83.33%, 
+    var(--bg-gradient-start) 100%);
+  background-size: 400% 400%;
+  animation: prideAnimation 8s ease-in-out infinite;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
+}
+
+/* Animated rainbow background */
+@keyframes prideAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+/* Pride celebration elements */
+.pride-celebration {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: celebrationPulse 2s ease-in-out infinite;
+}
+
+@keyframes celebrationPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  position: relative;
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-lg);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.page-container:not(.home-page) {
+  background: var(--container-bg);
+  backdrop-filter: var(--blur-effect);
+  box-shadow: 0 8px 32px var(--box-shadow), 0 0 0 1px var(--container-border);
+  border: 1px solid var(--container-border);
+}
+
+.content-menu {
+  position: relative;
+  display: inline-block;
+  margin: 2.5rem auto;
+}
+
+.dropdown-button {
+  padding: 1.2rem 2.8rem;
+  font-size: 1.2rem;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--button-border);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: var(--transition-medium);
+  font-weight: 500;
+  backdrop-filter: var(--blur-effect);
+  overflow: hidden;
+  position: relative;
+}
+
+.dropdown-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.dropdown-button:hover::after {
+  left: 100%;
+}
+
+.dropdown-button.active {
+  background: var(--button-hover-bg);
+  border-color: var(--button-border);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.dropdown-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--box-shadow-hover), 0 0 10px var(--accent-glow);
+  background: var(--button-hover-bg);
+}
+
+.dropdown-arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-button.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: var(--container-bg);
+  backdrop-filter: var(--blur-effect);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--container-border);
+  box-shadow: 0 4px 24px var(--box-shadow-hover);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-content.show {
+  display: block;
+  animation: dropdownFade 0.3s ease;
+}
+
+.dropdown-content button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.2rem 1.8rem;
+  border: none;
+  background: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-content button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+  transition: 0.3s;
+}
+
+.dropdown-content button:hover::after {
+  width: 100%;
+}
+
+.dropdown-content button:hover {
+  background: var(--button-hover-bg);
+}
+
+.platform-icon {
+  font-size: 1.3rem;
+}
+
+.home-button-overlay {
+  position: static;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.discord-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.home-button-persistent {
+  background: var(--button-bg);
+  color: var(--text-color);
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--button-border);
+  border-radius: var(--border-radius-sm);
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  backdrop-filter: var(--blur-effect);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-button-persistent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.home-button-persistent:hover::after {
+  left: 100%;
+}
+
+.home-button-persistent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--box-shadow-hover), 0 0 10px var(--accent-glow);
+  background: var(--button-hover-bg);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.platform-button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  padding: 1.2rem 2.8rem;
+  border: 1px solid var(--button-border);
+  border-radius: var(--border-radius-md);
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2rem;
+  backdrop-filter: var(--blur-effect);
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.platform-button:hover::after {
+  left: 100%;
+}
+
+@media (hover: hover) {
+  .platform-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px var(--box-shadow-hover), 0 0 12px var(--accent-glow);
+    background: var(--button-hover-bg);
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  animation: slideDown 1s ease-out;
+  background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prideTextAnimation 3s ease-in-out infinite, slideDown 1s ease-out;
+}
+
+@keyframes prideTextAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+  border-radius: 3px;
+  animation: prideGlow 2s ease-in-out infinite;
+}
+
+@keyframes prideGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button, .join-button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  padding: 1.2rem 2.8rem;
+  border: 1px solid var(--button-border);
+  border-radius: var(--border-radius-md);
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  text-decoration: none;
+  display: inline-block;
+  backdrop-filter: var(--blur-effect);
+  margin: 1rem;
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button::after, .join-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.nav-button:hover::after, .join-button:hover::after {
+  left: 100%;
+}
+
+.nav-button:hover, .join-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px var(--box-shadow-hover), 0 0 12px var(--accent-glow);
+  background: var(--button-hover-bg);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2.5rem;
+  width: 100%;
+}
+
+.video-item {
+  background: var(--container-bg);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px var(--box-shadow);
+  border: 1px solid var(--container-border);
+  transition: var(--transition-medium);
+  backdrop-filter: var(--blur-effect);
+}
+
+.video-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 32px var(--box-shadow-hover), 0 0 15px var(--accent-glow);
+  border-color: var(--accent-glow);
+}
+
+.video-item iframe {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 16px var(--box-shadow-hover);
+}
+
+.nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2.5rem 0;
+}
+
+.platform-button.youtube-btn {
+  background: rgba(255, 0, 0, 0.3);
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+.platform-button.twitch-btn {
+  background: rgba(100, 65, 165, 0.3);
+  border-color: rgba(100, 65, 165, 0.5);
+}
+
+.platform-button.bluesky-btn {
+  background: rgba(0, 133, 255, 0.3);
+  border-color: rgba(0, 133, 255, 0.5);
+}
+
+.join-button {
+  background: rgba(114, 137, 218, 0.3);
+  border-color: rgba(114, 137, 218, 0.5);
+}
+
+/* Pride Month specific styles */
+.pride-flag-border {
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982) 1;
+  animation: prideBorderAnimation 3s ease-in-out infinite;
+}
+
+@keyframes prideBorderAnimation {
+  0%, 100% {
+    border-image: linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982) 1;
+  }
+  50% {
+    border-image: linear-gradient(45deg, #732982, #004cff, #008026, #ffed00, #ff8c00, #e60026) 1;
+  }
+}
+
+/* Pride flag decoration */
+.pride-decoration {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(to bottom, 
+    #e60026 0%, #e60026 16.66%,
+    #ff8c00 16.66%, #ff8c00 33.33%,
+    #ffed00 33.33%, #ffed00 50%,
+    #008026 50%, #008026 66.66%,
+    #004cff 66.66%, #004cff 83.33%,
+    #732982 83.33%, #732982 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 998;
+  animation: prideWave 2s ease-in-out infinite;
+}
+
+@keyframes prideWave {
+  0%, 100% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(5deg);
+  }
+}
+
+/* Additional pride elements for all buttons */
+.nav-button, .join-button, .platform-button, .dropdown-button {
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--button-bg), var(--button-bg)), 
+                    linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Special Pride Month message overlay */
+.pride-message-overlay {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 1rem;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), 
+                    linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  z-index: 997;
+  max-width: 300px;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  animation: pridePulse 3s ease-in-out infinite;
+}
+
+@keyframes pridePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .page-container {
+    margin: 1rem;
+    padding: 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: var(--border-radius-md);
+    width: calc(100% - 2rem);
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .pride-celebration {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .pride-decoration {
+    width: 40px;
+    height: 30px;
+    right: 10px;
+  }
+
+  .pride-message-overlay {
+    bottom: 10px;
+    left: 10px;
+    max-width: 250px;
+    font-size: 0.8rem;
+  }
+}

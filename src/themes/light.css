@@ -5,6 +5,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* Pride Month Enhancement for Light Theme */
+.pride-celebration {
+  background: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008018, #0066cc, #732982);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.pride-message {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  color: #2a2a3a;
+}
+
+.rainbow-text {
+  background: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008018, #0066cc, #732982);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-pulse 3s ease-in-out infinite;
+}
+
+.pride-flag-border {
+  border: 3px solid transparent;
+  background: linear-gradient(45deg, #e40303, #ff8c00, #ffed00, #008018, #0066cc, #732982) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.pride-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+@keyframes rainbow-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
 /* Set light theme as default */
 :root {
   --bg-gradient-start: #40e0ff;

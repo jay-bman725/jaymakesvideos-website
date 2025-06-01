@@ -35,7 +35,7 @@ function Discord({ showConfirmation }) {
       // Handle non-JSON responses (like CORS errors)
       if (!response.ok) {
         if (response.status === 0) {
-          throw new Error('Could not connect to the invite service. Please try again later.');
+          throw new Error('Could not connect to the invite service. Please check our status page at https://jaymakesvideos.instatus.com/ for any ongoing issues.');
         }
         const data = await response.json().catch(() => ({ error: 'unknown' }));
         switch (data.error) {
@@ -49,25 +49,46 @@ function Discord({ showConfirmation }) {
             throw new Error('Your IP is being rate limited. Please try again in 24 hours.');
           case 'invalid_captcha':
             throw new Error('Captcha verification failed. Please try again.');
+          case 'service_unavailable':
+            throw new Error('The invite service is currently unavailable. Please check our status page at https://jaymakesvideos.instatus.com/ for updates.');
           default:
-            throw new Error('An error occurred while generating the invite link.');
+            throw new Error('An error occurred while generating the invite link. Please check our status page at https://jaymakesvideos.instatus.com/ for any ongoing issues.');
         }
       }
 
       const data = await response.json();
 
       if (data.is_banned) {
-        throw new Error('Sorry, you are not allowed to join this server.');
+        showConfirmation(
+          "You have been banned from the server. We recommend using our ChatGPT ban appeal assistant as it can help you get unbanned more effectively. However, you can also use a Google Form if you prefer.",
+          // onConfirm callback - redirect to ChatGPT
+          () => {
+            window.open('https://chatgpt.com/g/g-68181f0088c8819188b73eb871cc061d-jaymakesvideos-ban-appeal', '_blank', 'noopener,noreferrer');
+          },
+          // onCancel callback - close popup
+          () => {},
+          "Use ChatGPT Assistant",
+          false,
+          '',
+          null,
+          true,
+          "Use Google Form",
+          // onThirdButtonClick callback - redirect to Google Form
+          () => {
+            window.open('https://forms.gle/iBvPsgU5454xwywv6', '_blank', 'noopener,noreferrer');
+          }
+        );
+        return;
       }
 
       if (!data.invite_link) {
-        throw new Error('Could not generate an invite link at this time.');
+        throw new Error('Could not generate an invite link at this time. Please check our status page at https://jaymakesvideos.instatus.com/ for any ongoing issues.');
       }
 
       return data.invite_link;
     } catch (error) {
       if (error.message === 'Failed to fetch') {
-        throw new Error('Could not connect to the invite service. Please try again later.');
+        throw new Error('Could not connect to the invite service. Please check our status page at https://jaymakesvideos.instatus.com/ for any ongoing issues.');
       }
       throw error;
     } finally {
@@ -244,14 +265,31 @@ function Discord({ showConfirmation }) {
 
   return (
     <div className="discord-container page-container">
-      <h1>Join Our Discord Community!</h1>
+      <h1>🏳️‍🌈 Join Our Inclusive Discord Community! 🏳️‍🌈</h1>
+      
+      {/* Pride Month Special Message */}
+      <div style={{
+        background: 'linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982)',
+        padding: '1.5rem',
+        borderRadius: '15px',
+        margin: '1rem 0 2rem 0',
+        color: 'white',
+        textAlign: 'center',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+      }}>
+        <h2 style={{color: 'white', marginBottom: '1rem'}}>🏳️‍🌈 Safe Space for Everyone 🏳️‍🌈</h2>
+        <p style={{margin: 0, fontSize: '1.1rem', fontWeight: 'bold'}}>
+          Our Discord is a welcoming space for LGBTQ+ individuals and allies! 
+          Everyone is loved, valued, and celebrated here! 💖🌈
+        </p>
+      </div>
       
       <div className="discord-rules">
-        <h2>Discord Rules</h2>
+        <h2>🌈 Discord Rules - Creating a Safe Space for All</h2>
         <div>
           {Rules.map((rule, index) => (
-            <div key={index} className="rule-box">
-              <strong>{rule.title}</strong>
+            <div key={index} className="rule-box pride-flag-border">
+              <strong>🌈 {rule.title}</strong>
               <p>{rule.description}</p>
             </div>
           ))}
@@ -271,10 +309,14 @@ function Discord({ showConfirmation }) {
         </div>
         <button 
           onClick={handleJoinDiscord}
-          className="join-button"
+          className="join-button pride-flag-border"
           disabled={isLoading || !captchaToken}
+          style={{
+            background: !captchaToken ? 'var(--button-bg)' : 'linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982)',
+            fontWeight: 'bold'
+          }}
         >
-          {isLoading ? 'Generating Invite...' : 'Join Discord Server'}
+          {isLoading ? '🌈 Generating Invite...' : '🏳️‍🌈 Join Our Inclusive Discord Server!'}
         </button>
       </div>
     </div>
