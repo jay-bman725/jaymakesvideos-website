@@ -7,21 +7,10 @@ function Videos() {
 
   return (
     <div className="page-container videos-container">
-      <div className="pride-celebration">
-        <h1 className="rainbow-text">🏳️‍🌈 Pride Month Videos 🏳️‍🌈</h1>
-        <div className="pride-message">
-          <p>Celebrating love, diversity, and authenticity through our content! Happy Pride Month! 🌈✨</p>
-        </div>
-      </div>
-      
+      <h1>Videos</h1>
       <div className="videos-content">
-        <div className="pride-section">
-          <h2 className="rainbow-text">🎥 Latest Videos</h2>
-          <p>Creating inclusive content that celebrates everyone in our community!</p>
-        </div>
-        
         {videos.map((videoId, index) => (
-          <div key={index} className="video-item pride-flag-border">
+          <div key={index} className="video-item">
             <iframe
               src={`https://www.youtube.com/embed/${videoId}`}
               title={`YouTube video ${index + 1}`}
@@ -31,10 +20,6 @@ function Videos() {
             ></iframe>
           </div>
         ))}
-        
-        <div className="pride-footer">
-          <p className="rainbow-text">💖 Creating content with love and pride! 💖</p>
-        </div>
       </div>
     </div>
   );

@@ -56,12 +56,6 @@ function SiteMap() {
       name: 'Privacy Policy', 
       description: 'Our privacy policy and data practices' 
     },
-    {
-      path: 'https://jaymakesvideos.instatus.com/',
-      name: 'Status Page',
-      description: 'Check the status of our services and any ongoing issues',
-      isExternal: true
-    },
     { 
       path: '/sitemap', 
       name: 'Site Map', 
@@ -71,36 +65,26 @@ function SiteMap() {
 
   return (
     <div className="page-container">
-      <div className="pride-celebration">
-        <h1 className="rainbow-text">🏳️‍🌈 Site Map - Pride Edition 🏳️‍🌈</h1>
-        <div className="pride-message">
-          <p>Navigate with pride! Every page celebrates love, diversity, and inclusion! 🌈✨</p>
-        </div>
-      </div>
-      
-      <p>Here's a complete list of all pages available on this inclusive website:</p>
+      <h1>Site Map</h1>
+      <p>Here's a complete list of all pages available on this website:</p>
       
       <div className="site-map-grid">
         {pages.map((page, index) => (
           <button 
             key={index}
-            className="site-map-button pride-flag-border"
-            onClick={() => page.isExternal ? window.open(page.path, '_blank', 'noopener,noreferrer') : navigate(page.path)}
+            className="site-map-button"
+            onClick={() => navigate(page.path)}
             disabled={page.path === '/sitemap'}
           >
             <div className="button-content">
-              <h3 className="rainbow-text">{page.name}</h3>
+              <h3>{page.name}</h3>
               <p>{page.description}</p>
             </div>
             <div className="path-label">
-              {page.isExternal ? 'external' : page.path}
+              {page.path}
             </div>
           </button>
         ))}
-      </div>
-      
-      <div className="pride-footer">
-        <p className="rainbow-text">🗺️ Every page made with love and pride! 🗺️</p>
       </div>
     </div>
   );

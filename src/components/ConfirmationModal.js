@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText = "I Understand", showInput = false, inputValue = '', onInputChange = null, showThirdButton = false, thirdButtonText = "", onThirdButtonClick = null }) {
+function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText = "I Understand", showInput = false, inputValue = '', onInputChange = null }) {
   // Prevent scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -41,14 +41,6 @@ function ConfirmationModal({ isOpen, message, onConfirm, onCancel, confirmText =
           >
             Go Back
           </button>
-          {showThirdButton && onThirdButtonClick && (
-            <button 
-              className="theme-button accent" 
-              onClick={onThirdButtonClick}
-            >
-              {thirdButtonText}
-            </button>
-          )}
           <button 
             className="theme-button light" 
             onClick={onConfirm}

@@ -5,8 +5,7 @@ const ThemeToggle = () => {
   // Console log message about default theme
   console.log('Developer note: You can switch to the default theme by running: document.cookie = "theme=default" in the console and refreshing the page');
   
-  // Force Pride theme for Pride Month celebration! 🏳️‍🌈
-  const [theme, setTheme] = useState('pride');
+  const [theme, setTheme] = useState(Cookies.get('theme') || 'default');
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [failedTheme, setFailedTheme] = useState(null);
@@ -48,11 +47,12 @@ const ThemeToggle = () => {
   };
 
   useEffect(() => {
-    // Force Pride theme for Pride Month! 🏳️‍🌈
-    const prideTheme = 'pride';
-    Cookies.set('theme', prideTheme, { expires: 365 });
-    loadThemeFile(prideTheme);
-    setTheme(prideTheme);
+    const savedTheme = Cookies.get('theme');
+    if (!savedTheme) {
+      setShowModal(true);
+    } else {
+      loadThemeFile(savedTheme);
+    }
   }, []);
 
   const handleThemeChange = (newTheme) => {
@@ -102,34 +102,22 @@ const ThemeToggle = () => {
       {showModal && (
         <div className="theme-modal-overlay">
           <div className="theme-modal">
-            <h2>🏳️‍🌈 Pride Month Celebration! 🏳️‍🌈</h2>
-            <p>This June, we're celebrating Pride Month with our special Pride theme! Choose your preferred Pride celebration:</p>
+            <h2>Choose Your Theme</h2>
+            <p>Select your preferred theme for the website:</p>
             <div className="theme-buttons">
-              <button
-                className="theme-button pride"
-                onClick={() => handleThemeChange('pride')}
-                data-active={theme === 'pride'}
-                style={{
-                  background: 'linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982)',
-                  color: 'white',
-                  fontWeight: 'bold'
-                }}
-              >
-                🏳️‍🌈 Pride Theme (Default)
-              </button>
               <button
                 className="theme-button dark"
                 onClick={() => handleThemeChange('dark')}
                 data-active={theme === 'dark'}
               >
-                Dark Mode (With Pride Elements)
+                Dark Mode
               </button>
               <button
                 className="theme-button light"
                 onClick={() => handleThemeChange('light')}
                 data-active={theme === 'light'}
               >
-                Light Mode (With Pride Elements)
+                Light Mode
               </button>
             </div>
           </div>

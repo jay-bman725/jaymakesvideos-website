@@ -36,9 +36,6 @@ function AppContent() {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [onInputChange, setOnInputChange] = useState(null);
-  const [showThirdButton, setShowThirdButton] = useState(false);
-  const [thirdButtonText, setThirdButtonText] = useState('');
-  const [thirdButtonCallback, setThirdButtonCallback] = useState(null);
 
   useEffect(() => {
     // Check for privacy policy consent
@@ -121,7 +118,7 @@ function AppContent() {
   };
 
   // Method to show confirmation dialog from anywhere in the app
-  const showConfirmationDialog = (message, onConfirm, onCancel, confirmButtonText = 'I Understand', shouldShowInput = false, initialInputValue = '', inputChangeHandler = null, showThirdButton = false, thirdButtonText = '', onThirdButtonClick = null) => {
+  const showConfirmationDialog = (message, onConfirm, onCancel, confirmButtonText = 'I Understand', shouldShowInput = false, initialInputValue = '', inputChangeHandler = null) => {
     setConfirmationMessage(message);
     setConfirmationCallback(() => onConfirm);
     setCancelCallback(() => onCancel);
@@ -129,9 +126,6 @@ function AppContent() {
     setShowInput(shouldShowInput);
     setInputValue(initialInputValue);
     setOnInputChange(() => inputChangeHandler);
-    setShowThirdButton(showThirdButton);
-    setThirdButtonText(thirdButtonText);
-    setThirdButtonCallback(() => onThirdButtonClick);
     setShowConfirmation(true);
   };
 
@@ -159,30 +153,8 @@ function AppContent() {
     }
   };
 
-  // Handle third button click
-  const handleThirdButtonClick = () => {
-    setShowConfirmation(false);
-    if (thirdButtonCallback) {
-      thirdButtonCallback();
-    }
-  };
-
   return (
     <div className="App">
-      {/* Pride Month Celebration Banner */}
-      <div className="pride-celebration">
-        🏳️‍🌈 Happy Pride Month! Celebrating love, equality, and diversity! 🏳️‍🌈
-      </div>
-      
-      {/* Pride Flag Decoration */}
-      <div className="pride-decoration"></div>
-      
-      {/* Pride Message Overlay */}
-      <div className="pride-message-overlay">
-        <strong>🏳️‍🌈 Pride Month 2025</strong><br/>
-        Love is love! This month we celebrate the LGBTQ+ community and continue the fight for equality and acceptance worldwide. 💪❤️
-      </div>
-      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/content" element={<Content />} />
@@ -237,9 +209,6 @@ function AppContent() {
         showInput={showInput}
         inputValue={inputValue}
         onInputChange={handleInputChange}
-        showThirdButton={showThirdButton}
-        thirdButtonText={thirdButtonText}
-        onThirdButtonClick={handleThirdButtonClick}
       />
     </div>
   );

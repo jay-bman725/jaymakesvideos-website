@@ -38,69 +38,46 @@ function Home() {
 
   return (
     <div className="page-container home-page">
-      <h1>🏳️‍🌈 Welcome to JayMakesVideos! 🏳️‍🌈</h1>
-      <div style={{
-        background: 'linear-gradient(45deg, #e60026, #ff8c00, #ffed00, #008026, #004cff, #732982)',
-        padding: '1rem',
-        borderRadius: '15px',
-        margin: '1rem 0',
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-      }}>
-        🏳️‍🌈 HAPPY PRIDE MONTH 2025! 🏳️‍🌈<br/>
-        Celebrating love, diversity, and equality for all! 💖
-      </div>
+      <h1>Welcome to JayMakesVideos!</h1>
       <p>{welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]}</p>
-      <p style={{
-        background: 'rgba(255,255,255,0.1)',
-        padding: '1rem',
-        borderRadius: '10px',
-        fontStyle: 'italic',
-        border: '2px solid rgba(255,255,255,0.3)'
-      }}>
-        🌈 This month we celebrate the LGBTQ+ community and everyone who fights for love and equality! 
-        Love is love, and everyone deserves to be their authentic self! 🌈
-      </p>
       
       <div className="nav-buttons">
         <button 
-          className="nav-button content-btn pride-flag-border"
+          className="nav-button content-btn"
           onClick={() => navigate('/content')}
         >
-          🎥 My Content
+          My Content
         </button>
         <button 
-          className="nav-button discord-btn pride-flag-border"
+          className="nav-button discord-btn"
           onClick={() => navigate('/discord')}
         >
-          💬 Join Discord
+          Join Discord
         </button>
         <button 
-          className="nav-button pride-flag-border"
+          className="nav-button"
           onClick={() => navigate('/about')}
         >
-          🏳️‍🌈 About Me
+          About Me
         </button>
         <button 
-          className="nav-button pride-flag-border"
+          className="nav-button"
           onClick={() => navigate('/sitemap')}
         >
-          🗺️ Site Map
+          Site Map
         </button>
         <button 
-          className="nav-button theme-btn pride-flag-border"
+          className="nav-button theme-btn"
           onClick={handleThemeToggle}
         >
-          🎨 Change Theme
+          Change Theme
         </button>
         {isDefaultTheme && (
           <button 
-            className="nav-button theme-btn pride-flag-border"
+            className="nav-button theme-btn"
             onClick={handleThemeCustomize}
           >
-            ✨ Customize Website Theme
+            Customize Website Theme
           </button>
         )}
       </div>

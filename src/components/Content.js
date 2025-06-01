@@ -26,19 +26,14 @@ function Content() {
 
   return (
     <div className="page-container content-page">
-      <div className="pride-celebration">
-        <h1 className="rainbow-text">🏳️‍🌈 My Content - Pride Edition 🏳️‍🌈</h1>
-        <div className="pride-message">
-          <p>Discover inclusive content across all platforms! Celebrating diversity in every video, stream, and post! 🌈</p>
-        </div>
-      </div>
+      <h1>My Content</h1>
       
       <div className="content-menu" ref={dropdownRef}>
         <button 
-          className={`dropdown-button pride-flag-border ${isDropdownOpen ? 'active' : ''}`}
+          className={`dropdown-button ${isDropdownOpen ? 'active' : ''}`}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <span>🌈 Select Platform</span>
+          <span>Select Platform</span>
           <span className="dropdown-arrow">▼</span>
         </button>
         
@@ -46,7 +41,6 @@ function Content() {
           {platforms.map((platform, index) => (
             <button 
               key={index}
-              className="pride-flag-border"
               onClick={() => {
                 navigate(platform.path);
                 setIsDropdownOpen(false);
@@ -57,10 +51,6 @@ function Content() {
             </button>
           ))}
         </div>
-      </div>
-      
-      <div className="pride-footer">
-        <p className="rainbow-text">💖 Content created with love and pride for everyone! 💖</p>
       </div>
     </div>
   );
