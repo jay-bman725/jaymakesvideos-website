@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Base styles from index.css */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Pride Theme - Celebrating Love and Diversity */
+:root {
+  /* Pride gradient background using rainbow colors */
+  --bg-gradient-start: #e40303; /* Red */
+  --bg-gradient-middle: #ff8c00; /* Orange */
+  --bg-gradient-end: #ffed00; /* Yellow */
+  --text-color: #ffffff;
+  --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  --container-bg: rgba(255, 255, 255, 0.15);
+  --container-border: rgba(255, 255, 255, 0.3);
+  --button-bg: rgba(255, 255, 255, 0.2);
+  --button-border: rgba(255, 255, 255, 0.4);
+  --button-hover-bg: rgba(255, 255, 255, 0.3);
+  --box-shadow: rgba(0, 0, 0, 0.3);
+  --box-shadow-hover: rgba(0, 0, 0, 0.4);
+  --accent-glow: rgba(255, 255, 255, 0.4);
+  --border-radius-lg: 24px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 12px;
+  --transition-fast: all 0.2s ease;
+  --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --blur-effect: blur(12px);
+}
+
+body {
+  /* Multi-stop rainbow gradient background */
+  background: linear-gradient(
+    135deg,
+    #e40303 0%,   /* Red */
+    #ff8c00 16.67%, /* Orange */
+    #ffed00 33.33%, /* Yellow */
+    #008018 50%, /* Green */
+    #004cff 66.67%, /* Blue */
+    #732982 83.33%, /* Purple */
+    #e40303 100%  /* Back to red for seamless loop */
+  );
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
+  animation: prideShift 10s ease-in-out infinite alternate;
+}
+
+@keyframes prideShift {
+  0% {
+    background: linear-gradient(
+      135deg,
+      #e40303 0%,
+      #ff8c00 16.67%,
+      #ffed00 33.33%,
+      #008018 50%,
+      #004cff 66.67%,
+      #732982 83.33%,
+      #e40303 100%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      225deg,
+      #732982 0%,
+      #004cff 16.67%,
+      #008018 33.33%,
+      #ffed00 50%,
+      #ff8c00 66.67%,
+      #e40303 83.33%,
+      #732982 100%
+    );
+  }
+  100% {
+    background: linear-gradient(
+      315deg,
+      #e40303 0%,
+      #ff8c00 16.67%,
+      #ffed00 33.33%,
+      #008018 50%,
+      #004cff 66.67%,
+      #732982 83.33%,
+      #e40303 100%
+    );
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  background: var(--container-bg);
+  border: 1px solid var(--container-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 20px 40px var(--box-shadow);
+  transition: var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(228, 3, 3, 0.1) 0%,
+    rgba(255, 140, 0, 0.1) 16.67%,
+    rgba(255, 237, 0, 0.1) 33.33%,
+    rgba(0, 128, 24, 0.1) 50%,
+    rgba(0, 76, 255, 0.1) 66.67%,
+    rgba(115, 41, 130, 0.1) 83.33%,
+    rgba(228, 3, 3, 0.1) 100%
+  );
+  pointer-events: none;
+  animation: prideOverlay 8s ease-in-out infinite alternate;
+}
+
+@keyframes prideOverlay {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+  100% { opacity: 0.3; }
+}
+
+.page-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px var(--box-shadow-hover);
+}
+
+/* Headers with pride styling */
+h1, h2, h3, h4, h5, h6 {
+  background: linear-gradient(
+    45deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008018,
+    #004cff,
+    #732982
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prideText 3s ease-in-out infinite alternate;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+@keyframes prideText {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Buttons with pride theming */
+.button, button {
+  background: var(--button-bg);
+  border: 2px solid var(--button-border);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  text-shadow: var(--text-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before, button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.button:hover::before, button:hover::before {
+  left: 100%;
+}
+
+.button:hover, button:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--box-shadow);
+}
+
+/* Links with pride styling */
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  text-shadow: var(--text-shadow);
+}
+
+a:hover {
+  background: linear-gradient(
+    45deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008018,
+    #004cff,
+    #732982
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prideText 1s ease-in-out infinite alternate;
+}
+
+/* Cards and containers */
+.card, .content-card {
+  background: var(--container-bg);
+  border: 1px solid var(--container-border);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  transition: var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before, .content-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008018,
+    #004cff,
+    #732982
+  );
+  background-size: 200% 100%;
+  animation: prideBar 2s linear infinite;
+}
+
+@keyframes prideBar {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.card:hover, .content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px var(--box-shadow-hover);
+}
+
+/* Theme toggle and modal styles for pride month */
+.theme-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.theme-modal {
+  background: var(--container-bg);
+  border: 2px solid var(--container-border);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008018,
+    #004cff,
+    #732982
+  );
+  background-size: 200% 100%;
+  animation: prideBar 2s linear infinite;
+}
+
+.theme-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.theme-button {
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.theme-button:hover::before {
+  left: 100%;
+}
+
+.theme-button:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--box-shadow);
+}
+
+/* Pride month celebration message */
+.pride-celebration {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: var(--blur-effect);
+  -webkit-backdrop-filter: var(--blur-effect);
+}
+
+.pride-celebration h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.pride-celebration p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Special styling for form elements */
+input, textarea, select {
+  background: var(--container-bg);
+  border: 2px solid var(--container-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-color);
+  padding: 0.75rem;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .page-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .theme-modal {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 1.2em;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    --container-bg: rgba(255, 255, 255, 0.25);
+    --container-border: rgba(255, 255, 255, 0.5);
+  }
+}

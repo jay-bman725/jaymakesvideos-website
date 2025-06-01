@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 const ThemeToggle = () => {
-  // Console log message about default theme
-  console.log('Developer note: You can switch to the default theme by running: document.cookie = "theme=default" in the console and refreshing the page');
+  // Pride Month 2025 - Only Pride theme available
+  console.log('🏳️‍🌈 Pride Month 2025 - Celebrating love, diversity, and inclusion! 🏳️‍🌈');
   
-  const [theme, setTheme] = useState(Cookies.get('theme') || 'default');
+  const [theme, setTheme] = useState('pride');
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [failedTheme, setFailedTheme] = useState(null);
@@ -13,52 +13,42 @@ const ThemeToggle = () => {
 
   const loadThemeFile = async (themeName) => {
     try {
-      if (themeName !== 'default') {
-        // If switching from default theme, remove custom gradient/text settings
-        if (localStorage.getItem('currentTheme') === 'default') {
-          // Reset to default styles when switching from default theme with customizations
-          document.documentElement.style.removeProperty('--page-gradient');
-          document.documentElement.style.removeProperty('--text-color');
-        }
-        await import(`../themes/${themeName}.css`);
-        console.log(`Theme '${themeName}' loaded successfully`);
-      } else {
-        // When switching to default, apply any saved custom settings
-        const gradient = localStorage.getItem('gradientDirection')
-          ? `linear-gradient(${localStorage.getItem('gradientDirection')}, ${localStorage.getItem('gradientColor1') || '#3498db'}, ${localStorage.getItem('gradientColor2') || '#2ecc71'})`
-          : 'linear-gradient(to right, #3498db, #2ecc71)';
-        
-        document.documentElement.style.setProperty('--page-gradient', gradient);
-        
-        const savedTextColor = localStorage.getItem('textColor') || '#333333';
-        document.documentElement.style.setProperty('--text-color', savedTextColor);
-        
-        console.log('Using default theme from App.css with custom settings');
+      // Force pride theme for Pride Month 2025
+      if (themeName !== 'pride') {
+        themeName = 'pride';
       }
+      
+      await import(`../themes/${themeName}.css`);
+      console.log(`🏳️‍🌈 Pride theme loaded successfully - Happy Pride Month! 🏳️‍🌈`);
+      
       setShowErrorModal(false);
       setFailedTheme(null);
       // Set theme in localStorage for other components to access
       localStorage.setItem('currentTheme', themeName);
     } catch (error) {
-      console.error('Error loading theme:', error);
+      console.error('Error loading pride theme:', error);
       setFailedTheme(themeName);
       setShowErrorModal(true);
     }
   };
 
   useEffect(() => {
-    const savedTheme = Cookies.get('theme');
-    if (!savedTheme) {
-      setShowModal(true);
-    } else {
-      loadThemeFile(savedTheme);
-    }
+    // Force pride theme for Pride Month 2025
+    const prideTheme = 'pride';
+    setTheme(prideTheme);
+    Cookies.set('theme', prideTheme, { expires: 365 });
+    loadThemeFile(prideTheme);
+    
+    // Don't show theme selection modal - pride theme is the only option
+    setShowModal(false);
   }, []);
 
   const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
-    Cookies.set('theme', newTheme, { expires: 365 });
-    loadThemeFile(newTheme);
+    // Force pride theme for Pride Month 2025
+    const prideTheme = 'pride';
+    setTheme(prideTheme);
+    Cookies.set('theme', prideTheme, { expires: 365 });
+    loadThemeFile(prideTheme);
     setShowModal(false);
     
     // Dispatch theme change event for other components
@@ -73,9 +63,10 @@ const ThemeToggle = () => {
   };
 
   const handleUseDefault = () => {
-    const defaultTheme = 'default';
-    setTheme(defaultTheme);
-    Cookies.set('theme', defaultTheme, { expires: 365 });
+    // Force pride theme for Pride Month 2025
+    const prideTheme = 'pride';
+    setTheme(prideTheme);
+    Cookies.set('theme', prideTheme, { expires: 365 });
     setShowErrorModal(false);
     
     // Dispatch theme change event for other components
@@ -102,22 +93,18 @@ const ThemeToggle = () => {
       {showModal && (
         <div className="theme-modal-overlay">
           <div className="theme-modal">
-            <h2>Choose Your Theme</h2>
-            <p>Select your preferred theme for the website:</p>
+            <div className="pride-celebration">
+              <h2>🏳️‍🌈 Happy Pride Month 2025! 🏳️‍🌈</h2>
+              <p>This June, we're celebrating love, diversity, and inclusion with our special Pride theme!</p>
+              <p>This is the only theme available this month as we honor the LGBTQ+ community.</p>
+            </div>
             <div className="theme-buttons">
               <button
-                className="theme-button dark"
-                onClick={() => handleThemeChange('dark')}
-                data-active={theme === 'dark'}
+                className="theme-button pride"
+                onClick={() => handleThemeChange('pride')}
+                data-active={theme === 'pride'}
               >
-                Dark Mode
-              </button>
-              <button
-                className="theme-button light"
-                onClick={() => handleThemeChange('light')}
-                data-active={theme === 'light'}
-              >
-                Light Mode
+                🏳️‍🌈 Pride Theme 🏳️‍🌈
               </button>
             </div>
           </div>
@@ -126,26 +113,20 @@ const ThemeToggle = () => {
       {showErrorModal && (
         <div className="theme-modal-overlay">
           <div className="theme-modal">
-            <h2>Theme Loading Error</h2>
-            <p>Failed to load the '{failedTheme}' theme. Would you like to:</p>
+            <h2>🏳️‍🌈 Pride Theme Loading 🏳️‍🌈</h2>
+            <p>Having trouble loading the Pride theme? Let's try again!</p>
             <div className="theme-buttons">
               <button
                 className="theme-button retry"
                 onClick={handleRetry}
               >
-                Retry
+                🔄 Retry Pride Theme
               </button>
               <button
-                className="theme-button default"
+                className="theme-button pride"
                 onClick={handleUseDefault}
               >
-                Use Default Theme
-              </button>
-              <button
-                className="theme-button choose-another"
-                onClick={handleChooseAnother}
-              >
-                Choose Another Theme
+                🏳️‍🌈 Use Pride Theme
               </button>
             </div>
           </div>
